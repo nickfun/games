@@ -1,0 +1,14 @@
+* Games
+
+** About
+
+A simple app to keep track of my video game library.
+
+Also a testing ground for Marionette, PHP Slim, and anything else
+
+** Requirements
+
+- PHP 5.4+
+- MySQL
+- Any webserver
+  I run this by having foreman invoke PHP's built in webserver. 
