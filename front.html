@@ -3,16 +3,37 @@
 <head>
   <title>Nick's Games App</title>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- BOOTSTRAP -->
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+  <script src="vendor.js"></script>
+  <script src="app.js"></script>
 </head>
 <body>
-  <h1>Hello world!</h1>
-  <p>Tech I am using:</p>
-  <ul>
-    <li>Emacs</li>
-    <li>PHP, Slim Framework</li>
-    <li>MySQL</li>
-    <li>Javascript, Marionette Framework, Grunt</li>
-    <li>Foreman</li>
-  </ul>
+
+  <h1>msg</h1>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-3"><strong>col-xs-3</strong> Hello World</div>
+      <div class="col-xs-3">My name is Nick!</div>
+      <div class="col-xs-3">How are you?</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-4"><strong> col-xs-4</strong> Hello World</div>
+      <div class="col-xs-4">My name is Nick!</div>
+      <div class="col-xs-4">How are you?</div>
+    </div>
+    <div class="row">
+      <div class="col-xs-6">six is half</div>
+      <div class="col-xs-6">double it to make twelve :)</div>
+    </div>
+  </div>
+
+<script>
+app.start();
+</script>
+
 </body>
 </html>
