@@ -33,13 +33,15 @@ $app->get('/', function() use ($pdo, $app) {
 
 $app->get('/systems', function() use ($pdo, $app) {
     $res = $pdo->query('select * from systems');
-    $systems = [];
-    foreach($res as $row) {
-      $systems[] = $row;
-    }
-    
-    //return  json_encode($systems);
-    echo json_encode($systems);
-  });
+    echo json_encode($res->fetchAll());
+});
+
+$app->get('/system/:id', function($id) use ($pdo, $app) {
+    $id = (int) $id;
+    $stm = $pdo->prepare('select * from systems where id=:id');
+    $stm->execute([':id' => $id]);
+    $system = $stm->fetchAll();
+    echo json_encode($system);
+});
 
 $app->run();
