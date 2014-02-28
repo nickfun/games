@@ -1,0 +1,7 @@
+#
+# Example config file
+#
+GAME_DB_HOST=localhost
+GAME_DB_DATABASE=games
+GAME_DB_USER=root
+GAME_DB_PASS=secret
