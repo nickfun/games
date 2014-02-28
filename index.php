@@ -1,17 +1,19 @@
 <?php 
 
-phpinfo();
+require_once 'vendor/autoload.php';
 
-echo "<pre>";
+$db_host = getenv('GAME_DB_HOST');
+$db_name = getenv('GAME_DB_DATABASE');
+$db_user = getenv('GAME_DB_USER');
+$db_pass = getenv('GAME_DB_PASS');
 
-print_r($_ENV);
+$dsn = "mysql:dbname=$db_name;host=$db_host";
+$pdo = new PDO($dsn, $db_user, $db_pass);
 
-$config = array(
-	'GAME_DB_HOST' => getenv('GAME_DB_HOST'),
-	'GAME_DB_DATABASE' => getenv('GAME_DB_DATABASE'),
-	'GAME_DB_USER' => getenv('GAME_DB_USER'),
-	'GAME_DB_PASS' => getenv('GAME_DB_PASS'),
-);
+$app = new \Slim\Slim();
 
-print_r($config);
+$app->get('/', function() use ($pdo) {
+    echo file_get_contents('front.html');
+});
 
+$app->run();
