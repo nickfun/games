@@ -17,12 +17,23 @@ module.exports = function(grunt) {
 		src: ['js/app.js'],
 		dest: 'app.js'
 	    }
+	},
+	uglify: {
+	    vendor: {
+		src: 'vendor.js',
+		dest: 'vendor.min.js'
+	    },
+	    app: {
+		src: 'app.js',
+		dest: 'app.min.js'
+	    }
 	}
     });
     
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
 
-    grunt.registerTask('default', ['concat:vendor', 'concat:app']);
+    grunt.registerTask('default', ['concat:vendor', 'concat:app', 'uglify']);
 
 };
 
