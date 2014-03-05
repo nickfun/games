@@ -14,7 +14,10 @@ module.exports = function(grunt) {
 		dest: 'vendor.js'
 	    },
 	    app: {
-		src: ['js/app.js'],
+		src: [
+		    'js/tpl.js',
+		    'js/app.js'
+		],
 		dest: 'app.js'
 	    }
 	},
@@ -27,13 +30,25 @@ module.exports = function(grunt) {
 		src: 'app.js',
 		dest: 'app.min.js'
 	    }
+	},
+	jst: {
+	    options: {
+		namespace: 'TPL'
+	    },
+	    compile: {
+		files: {
+		    "js/tpl.js": ["tpl/*html"]
+		}
+	    }
 	}
     });
     
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-jst');
 
     grunt.registerTask('default', ['concat:vendor', 'concat:app', 'uglify']);
+    grunt.registerTask('t', ['jst:compile']);
 
 };
 
