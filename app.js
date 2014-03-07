@@ -12,7 +12,7 @@ __e( company ) +
 ' ' +
 __e( name ) +
 '</div>\n<div class="col-sm-8">' +
-__e( releae ) +
+__e( release ) +
 '</div>\n<div clsss="col-xs-12">' +
 __e( comments ) +
 '</div>\n';
@@ -40,7 +40,7 @@ app.addInitializer( function() {
 app.Collections = {
 	Systems: Backbone.Collection.extend({
 		url: '/systems',
-		comparator: 'company'
+		comparator: 'release'
 	}),
 	Games: Backbone.Collection.extend({
 		url: '/games'
@@ -51,5 +51,43 @@ app.data = {
 	systems: new app.Collections.Systems(),
 	games: new app.Collections.Games()
 };
+app.data.systems.comparator = 'company';
 app.data.systems.fetch();
 app.data.games.fetch();
+
+/**
+ * Views for the application
+ */
+
+app.Views = {};
+
+app.Views.SystemRow = Marionette.ItemView.extend({
+	template: window.TPL['system-row'],
+	tagName: 'div',
+	className: 'row'
+});
+
+app.Views.SystemList = Marionette.CollectionView.extend({
+	tagName: 'div',
+	className: 'container-fluid',
+	itemView: app.Views.SystemRow
+});
+
+/**
+ * Systems Module
+ */
+
+app.module('Systems', function( module, app ) {
+
+	module.addInitializer( function() {
+		systemListView = new app.Views.SystemList({
+			collection: app.data.systems
+		});
+		systemListView.render();
+		$('#main').empty().append(systemListView.el);
+	});
+	
+	var systemListView;
+		
+});
+

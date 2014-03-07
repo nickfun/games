@@ -12,7 +12,7 @@ __e( company ) +
 ' ' +
 __e( name ) +
 '</div>\n<div class="col-sm-8">' +
-__e( releae ) +
+__e( release ) +
 '</div>\n<div clsss="col-xs-12">' +
 __e( comments ) +
 '</div>\n';

@@ -18,7 +18,7 @@ app.addInitializer( function() {
 app.Collections = {
 	Systems: Backbone.Collection.extend({
 		url: '/systems',
-		comparator: 'company'
+		comparator: 'release'
 	}),
 	Games: Backbone.Collection.extend({
 		url: '/games'

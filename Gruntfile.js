@@ -16,7 +16,10 @@ module.exports = function(grunt) {
 			app: {
 				src: [
 					'js/tpl.js',
-					'js/app.js'
+					'js/app.js',
+					'js/views.js',
+					
+					'js/*.module.js'
 				],
 				dest: 'app.js'
 			}
