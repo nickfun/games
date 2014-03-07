@@ -21,8 +21,8 @@ $resp = $app->response();
 $resp['Content-Type'] = 'application/json';
 
 
-// Endpoints
-// =========
+// Routes
+// ======
 
 $app->get('/', function() use ($pdo, $app) {
     // only this route is HTML

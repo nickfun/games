@@ -14,3 +14,13 @@ app.addInitializer( function() {
 	console.log('width is', w);
     });
 });
+
+app.Collections = {
+	Systems: Backbone.Collection.extend({
+		url: '/systems',
+		comparator: 'company'
+	}),
+	Games: Backbone.Collection.extend({
+		url: '/games'
+	})
+};
