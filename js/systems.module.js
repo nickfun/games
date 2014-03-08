@@ -10,7 +10,7 @@ app.module('Systems', function( module, app ) {
 			collection: app.data.systems
 		});
 		systemListView.render();
-		$('#main').empty().append(systemListView.el);
+		$('#system-list').empty().append(systemListView.el);
 	});
 	
 	var systemListView;

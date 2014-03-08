@@ -48,12 +48,22 @@ module.exports = function(grunt) {
 					"js/tpl.js": ["tpl/*html"]
 				}
 			}
+		},
+		watch: {
+			tpl: {
+				files: [
+					'js/*.js',
+					'tpl/*.html'
+				],
+				tasks: "default"
+			}
 		}
     });
     
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jst');
+    grunt.loadNpmTasks('grunt-contrib-watch');
 
     grunt.registerTask('default', ['jst', 'concat', 'uglify']);
     grunt.registerTask('t', ['jst:compile']);

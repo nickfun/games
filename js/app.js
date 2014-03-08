@@ -29,5 +29,6 @@ app.data = {
 	systems: new app.Collections.Systems(),
 	games: new app.Collections.Games()
 };
+
 app.data.systems.fetch();
 app.data.games.fetch();
