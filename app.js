@@ -32,9 +32,9 @@ __p += '\n<div class="col-sm-3">' +
 ((__t = ( release )) == null ? '' : __t) +
 ' ' +
 ((__t = ( extras(obj) )) == null ? '' : __t) +
-' </div>\n<div class="col-sm-7">' +
+' </div>\n<div class="col-sm-7">\n\t<button type="button" class="btn btn-default btn-sm">\n\t\t<span class="glyphicon glyphicon-star"></span> Edit\n\t</button>\n\t' +
 ((__t = ( comment )) == null ? '' : __t) +
-'</div>\n\n';
+'\n</div>\n\n';
 
 }
 return __p
@@ -47,11 +47,11 @@ function print() { __p += __j.call(arguments, '') }
 with (obj) {
 
  // name company release comments ;
-__p += '\n\n<div class="col-sm-3"><strong>' +
+__p += '\n\n<div class="col-sm-3">\n\t<button type="button" class="btn btn-default btn-sm">\n\t\t<span class="glyphicon glyphicon-star"></span> Edit\n\t</button>\n\t<strong>' +
 __e( company ) +
 ' ' +
 __e( name ) +
-'</strong></div>\n<div class="col-sm-9">' +
+'</strong>\n</div>\n<div class="col-sm-9">' +
 __e( release ) +
 '</div>\n<div clsss="col-sm-12">' +
 __e( comments ) +

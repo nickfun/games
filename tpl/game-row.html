@@ -20,5 +20,10 @@ function extras( options ) {
 %>
 <div class="col-sm-3"><%= name %></div>
 <div class="col-sm-2"><%= release %> <%= extras(obj) %> </div>
-<div class="col-sm-7"><%= comment %></div>
+<div class="col-sm-7">
+	<button type="button" class="btn btn-default btn-sm">
+		<span class="glyphicon glyphicon-star"></span> Edit
+	</button>
+	<%= comment %>
+</div>
 
