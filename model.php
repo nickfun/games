@@ -3,19 +3,33 @@
 class Model {
 	private $pdo;
 	
-	public __construct($db) {
+	public function __construct($db) {
 		$this->pdo = $db;
 	}
 	
-	public getAllSystems() {
+	public function getAllSystems() {
+		$res = $this->pdo->query('select * from systems');
+		return $res->fetchAll();
 	}
 	
-	public getAllGames() {
+	public function getSystem($id) {
+		$id = (int) $id;
+		$stm = $pdo->prepare('select * from systems where id=:id');
+		$stm->execute([':id' => $id]);
+		return $stm->fetchAll();
 	}
 	
-	public getGame($id) {}
+	public function getAllGames() {
+		$res = $this->pdo->query('select * from games');
+		return $res->fetchAll();
+	}
 	
-	public getSystem($id) {}
+	public function getGame($id) {
+		$id = (int) $id;
+		$stm = $pdo->prepare('select * from games where id=:id');
+		$stm->execute(['id' => $id]);
+		return $stm->fetchAll();
+	}
 	
 }
 

@@ -132,7 +132,7 @@ app.Views.GameList = Marionette.CollectionView.extend({
 app.module('Games', function( module, app ) {
 
 	module.addInitializer( function() {
-		debugger;
+//		debugger;
 		// get list of games for ONE system
 		var temp = app.data.games.where({sysid: app.data.systems.last().get('id')});
 		gameListView = new Backbone.Collection( temp );
