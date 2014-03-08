@@ -65,7 +65,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jst');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
-    grunt.registerTask('default', ['jst', 'concat', 'uglify']);
+    grunt.registerTask('default', ['jst', 'concat']);
     grunt.registerTask('t', ['jst:compile']);
 
 };
