@@ -47,11 +47,11 @@ function print() { __p += __j.call(arguments, '') }
 with (obj) {
 
  // name company release comments ;
-__p += '\n\n<div class="col-sm-3">' +
+__p += '\n\n<div class="col-sm-3"><strong>' +
 __e( company ) +
 ' ' +
 __e( name ) +
-'</div>\n<div class="col-sm-9">' +
+'</strong></div>\n<div class="col-sm-9">' +
 __e( release ) +
 '</div>\n<div clsss="col-sm-12">' +
 __e( comments ) +

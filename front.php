@@ -19,13 +19,17 @@
 </head>
 <body>
 
-  <h1>msg</h1>
+	<h1>My Game Collection!</h1>
+	
+	<h2>Systems</h2>
+	<div id="system-list"></div>
 
-  <div id="system-list"></div>
+	<h2>Games</h2>
+	<div id="game-list"></div>
+
+	<div id="info">info</div>
   
-  <div id="game-list"></div>
-
-  <div id="info">info</div>
+  <?php /*
 
   <div class="container-fluid">
     <div class="row">
@@ -44,34 +48,37 @@
     </div>
   </div>
 
-<div class="container-fluid">
+	<div class="container-fluid">
 
-<!-- Stack the columns on mobile by making one full-width and the other half-width -->
-<div class="row x">
-  <div class="col-xs-12 col-md-8">.col-xs-12 .col-md-8</div>
-  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
-</div>
+	<!-- Stack the columns on mobile by making one full-width and the other half-width -->
+	<div class="row x">
+	  <div class="col-xs-12 col-md-8">.col-xs-12 .col-md-8</div>
+	  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+	</div>
 
-<!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
-<div class="row x">
-  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
-  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
-  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
-</div>
+	<!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+	<div class="row x">
+	  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+	  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+	  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+	</div>
 
-<!-- Columns are always 50% wide, on mobile and desktop -->
-<div class="row x">
-  <div class="col-xs-6">.col-xs-6</div>
-  <div class="col-xs-6">.col-xs-6</div>
-</div>
+	<!-- Columns are always 50% wide, on mobile and desktop -->
+	<div class="row x">
+	  <div class="col-xs-6">.col-xs-6</div>
+	  <div class="col-xs-6">.col-xs-6</div>
+	</div>
 
-<div class="row">
-  <div class="col-sm-4">TITLE</div>
-  <div class="col-sm-8">The legend of zelda: the ocarana of time</div>
-  <div class="col-xs-12">A charming story of a boy who likes music :-)</div>
-</div>
+	<div class="row">
+	  <div class="col-sm-4">TITLE</div>
+	  <div class="col-sm-8">The legend of zelda: the ocarana of time</div>
+	  <div class="col-xs-12">A charming story of a boy who likes music :-)</div>
+	</div>
 
-</div>
+	</div>
+
+	*/
+	?>
 
 
 <script>

@@ -47,11 +47,11 @@ function print() { __p += __j.call(arguments, '') }
 with (obj) {
 
  // name company release comments ;
-__p += '\n\n<div class="col-sm-3">' +
+__p += '\n\n<div class="col-sm-3"><strong>' +
 __e( company ) +
 ' ' +
 __e( name ) +
-'</div>\n<div class="col-sm-9">' +
+'</strong></div>\n<div class="col-sm-9">' +
 __e( release ) +
 '</div>\n<div clsss="col-sm-12">' +
 __e( comments ) +
@@ -163,15 +163,17 @@ app.module('Games', function( module, app ) {
 app.module('Systems', function( module, app ) {
 
 	module.addInitializer( function() {
-		app.data.systems.sort();
+
 		systemListView = new app.Views.SystemList({
 			collection: app.data.systems
 		});
 		systemListView.render();
+
 		$('#system-list').empty().append(systemListView.el);
 	});
 	
 	var systemListView;
+	console.log("HELLO");
 		
 });
 
