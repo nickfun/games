@@ -24,9 +24,16 @@ function extras( options ) {
 	});
 	return output;
 }
+
 ;
-__p += '\n<div class="col-xs-12">' +
-((__t = ( extras(this) )) == null ? '' : __t) +
+__p += '\n<div class="col-sm-3">' +
+((__t = ( name )) == null ? '' : __t) +
+'</div>\n<div class="col-sm-2">' +
+((__t = ( release )) == null ? '' : __t) +
+' ' +
+((__t = ( extras(obj) )) == null ? '' : __t) +
+' </div>\n<div class="col-sm-7">' +
+((__t = ( comment )) == null ? '' : __t) +
 '</div>\n\n';
 
 }
@@ -135,13 +142,13 @@ app.module('Games', function( module, app ) {
 //		debugger;
 		// get list of games for ONE system
 		var temp = app.data.games.where({sysid: app.data.systems.last().get('id')});
-		gameListView = new Backbone.Collection( temp );
+		myGameList = new Backbone.Collection( temp );
 
 		gameListView = new app.Views.GameList({
-			collection: myGameList
+			collection: app.data.games
 		});
 		gameListView.render();
-		$('#game-list').empty().append(systemListView.el);
+		$('#game-list').empty().append(gameListView.el);
 	});
 	
 	var gameListView;

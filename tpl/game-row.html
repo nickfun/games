@@ -16,6 +16,9 @@ function extras( options ) {
 	});
 	return output;
 }
+
 %>
-<div class="col-xs-12"><%= extras(this) %></div>
+<div class="col-sm-3"><%= name %></div>
+<div class="col-sm-2"><%= release %> <%= extras(obj) %> </div>
+<div class="col-sm-7"><%= comment %></div>
 

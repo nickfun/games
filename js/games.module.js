@@ -8,13 +8,13 @@ app.module('Games', function( module, app ) {
 //		debugger;
 		// get list of games for ONE system
 		var temp = app.data.games.where({sysid: app.data.systems.last().get('id')});
-		gameListView = new Backbone.Collection( temp );
+		myGameList = new Backbone.Collection( temp );
 
 		gameListView = new app.Views.GameList({
-			collection: myGameList
+			collection: app.data.games
 		});
 		gameListView.render();
-		$('#game-list').empty().append(systemListView.el);
+		$('#game-list').empty().append(gameListView.el);
 	});
 	
 	var gameListView;
