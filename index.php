@@ -1,6 +1,7 @@
 <?php 
 
 require_once 'vendor/autoload.php';
+require_once 'model.php';
 
 // Config
 // ======
@@ -20,15 +21,19 @@ $app = new \Slim\Slim();
 $resp = $app->response();
 $resp['Content-Type'] = 'application/json';
 
+$model = new Model($pdo);
+
 
 // Routes
 // ======
 
-$app->get('/', function() use ($pdo, $app) {
+$app->get('/', function() use ($pdo, $app, $model) {
     // only this route is HTML
     $resp = $app->response();
     $resp['Content-Type'] = 'text/html';
-    $resp->body(file_get_contents('front.html'));
+    $bootstrap_games = json_encode($model->getAllGames());
+    $bootstrap_systems = json_encode($model->getAllSystems());
+    include('front.php');
 });
 
 $app->get('/systems', function() use ($pdo, $app) {
