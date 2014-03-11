@@ -4,20 +4,28 @@
 
 app.module('Games', function( module, app ) {
 
-	module.addInitializer( function() {
-//		debugger;
-		// get list of games for ONE system
-		var temp = app.data.games.where({sysid: app.data.systems.last().get('id')});
-		myGameList = new Backbone.Collection( temp );
-
-		gameListView = new app.Views.GameList({
-			collection: app.data.games
-		});
-		gameListView.render();
-		$('#game-list').empty().append(gameListView.el);
+    module.addInitializer( function() {
+	gameListView = new Views.GameList({
+	    collection: app.data.games
 	});
-	
-	var gameListView;
-	var myGameList;
-});
+	gameListView.render();
+	$('#game-list').empty().append(gameListView.el);
+    });
+    
+    var gameListView;
+    
+    var Views = {};
+    
+    Views.GameRow = Marionette.ItemView.extend({
+	template: window.TPL['game-row'],
+	tagName: 'div',
+	className: 'row'
+    });
+    
+    Views.GameList = Marionette.CollectionView.extend({
+	tagName: 'div',
+	className: 'container-flud',
+	itemView: Views.GameRow
+    });
 
+});

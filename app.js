@@ -47,7 +47,7 @@ function print() { __p += __j.call(arguments, '') }
 with (obj) {
 
  // name company release comments ;
-__p += '\n\n<div class="col-sm-3">\n\t<button type="button" class="btn btn-default btn-sm">\n\t\t<span class="glyphicon glyphicon-star"></span> Edit\n\t</button>\n\t<strong>' +
+__p += '\n\n<div class="col-sm-3">\n\t<button type="button" class="btn btn-default btn-sm edit">\n\t\t<span class="glyphicon glyphicon-star"></span> Edit\n\t</button>\n\t<strong>' +
 __e( company ) +
 ' ' +
 __e( name ) +
@@ -70,7 +70,7 @@ app.addInitializer( function() {
     console.log("APP has started");
     $('h1').text('Hello world!');
 
-    $('div').click(function() {
+    $('div').one('click', function() {
 	var w = document.body.clientWidth;
 	$('#info').text( w );
 	console.log('width is', w);
@@ -138,23 +138,31 @@ app.Views.GameList = Marionette.CollectionView.extend({
 
 app.module('Games', function( module, app ) {
 
-	module.addInitializer( function() {
-//		debugger;
-		// get list of games for ONE system
-		var temp = app.data.games.where({sysid: app.data.systems.last().get('id')});
-		myGameList = new Backbone.Collection( temp );
-
-		gameListView = new app.Views.GameList({
-			collection: app.data.games
-		});
-		gameListView.render();
-		$('#game-list').empty().append(gameListView.el);
+    module.addInitializer( function() {
+	gameListView = new Views.GameList({
+	    collection: app.data.games
 	});
-	
-	var gameListView;
-	var myGameList;
-});
+	gameListView.render();
+	$('#game-list').empty().append(gameListView.el);
+    });
+    
+    var gameListView;
+    
+    var Views = {};
+    
+    Views.GameRow = Marionette.ItemView.extend({
+	template: window.TPL['game-row'],
+	tagName: 'div',
+	className: 'row'
+    });
+    
+    Views.GameList = Marionette.CollectionView.extend({
+	tagName: 'div',
+	className: 'container-flud',
+	itemView: Views.GameRow
+    });
 
+});
 
 /**
  * Systems Module
@@ -162,18 +170,41 @@ app.module('Games', function( module, app ) {
 
 app.module('Systems', function( module, app ) {
 
-	module.addInitializer( function() {
-
-		systemListView = new app.Views.SystemList({
-			collection: app.data.systems
+    module.addInitializer( function() {
+	    
+	    systemListView = new Views.SystemList({
+		    collection: app.data.systems
 		});
-		systemListView.render();
-
-		$('#system-list').empty().append(systemListView.el);
+	    systemListView.render();
+	    
+	    $('#system-list').empty().append(systemListView.el);
 	});
-	
-	var systemListView;
-	console.log("HELLO");
+    
+    var systemListView;
+    console.log("HELLO");
+
+    // Views
+    // -------
+
+    var Views = {};
+
+    Views.SystemRow = Marionette.ItemView.extend({
+	template: window.TPL['system-row'],
+	tagName: 'div',
+	className: 'row',
+	events: {
+	    'click button.edit': 'clickEditButton'
+	},
+	clickEditButton: function(e) {
+	    console.log("Hello from", this.model.get('id'), "in SYSTEM");
+	}
+    });
+
+    Views.SystemList = Marionette.CollectionView.extend({
+	tagName: 'div',
+	className: 'container-fluid',
+	itemView: Views.SystemRow
+    });
 		
 });
 

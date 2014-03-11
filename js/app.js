@@ -8,7 +8,7 @@ app.addInitializer( function() {
     console.log("APP has started");
     $('h1').text('Hello world!');
 
-    $('div').click(function() {
+    $('div').one('click', function() {
 	var w = document.body.clientWidth;
 	$('#info').text( w );
 	console.log('width is', w);

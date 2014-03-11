@@ -47,7 +47,7 @@ function print() { __p += __j.call(arguments, '') }
 with (obj) {
 
  // name company release comments ;
-__p += '\n\n<div class="col-sm-3">\n\t<button type="button" class="btn btn-default btn-sm">\n\t\t<span class="glyphicon glyphicon-star"></span> Edit\n\t</button>\n\t<strong>' +
+__p += '\n\n<div class="col-sm-3">\n\t<button type="button" class="btn btn-default btn-sm edit">\n\t\t<span class="glyphicon glyphicon-star"></span> Edit\n\t</button>\n\t<strong>' +
 __e( company ) +
 ' ' +
 __e( name ) +
