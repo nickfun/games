@@ -33,6 +33,10 @@ app.module('Systems', function( module, app ) {
 	    console.log("Hello from", this.model.get('id'), "in SYSTEM");
 	    console.log("el is ", this.$el);
 	    window.el=this.$el;
+	    var edit = new Views.SystemEdit();
+	    edit.render();
+	    this.$el.append( edit.$el );
+	    // TODO some kind of system to dispose of the view when done
 	}
     });
 
@@ -40,6 +44,12 @@ app.module('Systems', function( module, app ) {
 	tagName: 'div',
 	className: 'container-fluid',
 	itemView: Views.SystemRow
+    });
+
+    Views.SystemEdit = Marionette.ItemView.extend({
+	tagName: 'div',
+	className: 'row',
+	template: window.TPL['system-edit']
     });
 		
 });

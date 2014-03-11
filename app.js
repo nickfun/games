@@ -40,6 +40,16 @@ __p += '\n<div class="col-sm-3">' +
 return __p
 };
 
+this["TPL"]["system-edit"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="col-xs-12 col-lg-3">Name: </div>\n<div class="col-xs-12 col-lg-3"><input type="text" placeholder="name of system"> </div>\n<div class="col-xs-12 col-lg-3">Company: </div>\n<div class="col-xs-12 col-lg-3"><select><option>Sony</option><option>Nintendo</option> </div>\n';
+
+}
+return __p
+};
+
 this["TPL"]["system-row"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
@@ -162,6 +172,10 @@ app.module('Systems', function( module, app ) {
 	    console.log("Hello from", this.model.get('id'), "in SYSTEM");
 	    console.log("el is ", this.$el);
 	    window.el=this.$el;
+	    var edit = new Views.SystemEdit();
+	    edit.render();
+	    this.$el.append( edit.$el );
+	    // TODO some kind of system to dispose of the view when done
 	}
     });
 
@@ -169,6 +183,12 @@ app.module('Systems', function( module, app ) {
 	tagName: 'div',
 	className: 'container-fluid',
 	itemView: Views.SystemRow
+    });
+
+    Views.SystemEdit = Marionette.ItemView.extend({
+	tagName: 'div',
+	className: 'row',
+	template: window.TPL['system-edit']
     });
 		
 });

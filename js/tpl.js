@@ -40,6 +40,16 @@ __p += '\n<div class="col-sm-3">' +
 return __p
 };
 
+this["TPL"]["system-edit"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="col-xs-12 col-lg-3">Name: </div>\n<div class="col-xs-12 col-lg-3"><input type="text" placeholder="name of system"> </div>\n<div class="col-xs-12 col-lg-3">Company: </div>\n<div class="col-xs-12 col-lg-3"><select><option>Sony</option><option>Nintendo</option> </div>\n';
+
+}
+return __p
+};
+
 this["TPL"]["system-row"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
