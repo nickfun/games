@@ -44,7 +44,13 @@ this["TPL"]["system-edit"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="col-xs-12 col-lg-3">Name: </div>\n<div class="col-xs-12 col-lg-3"><input type="text" placeholder="name of system"> </div>\n<div class="col-xs-12 col-lg-3">Company: </div>\n<div class="col-xs-12 col-lg-3"><select><option>Sony</option><option>Nintendo</option> </div>\n';
+__p += '<div class="col-xs-12 col-lg-3">Name: </div>\n<div class="col-xs-12 col-lg-3"><input type="text" value="' +
+__e( name ) +
+'"> </div>\n<div class="col-xs-12 col-lg-3">Company: </div>\n<div class="col-xs-12 col-lg-3"><select><option>Sony</option><option>Nintendo</option></select> </div>\n\n<div class="col-xs-12 col-lg-3">Release: </div>\n<div class="col-xs-12 col-lg-3"><input type="text" value="' +
+__e( release ) +
+'"> </div>\n<div class="col-xs-12 col-lg-3">Comments: </div>\n<div class="col-xs-12 col-lg-3"><input type="text" value="' +
+__e( comments ) +
+'"> </div>\n';
 
 }
 return __p
