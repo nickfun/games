@@ -174,15 +174,25 @@ app.module('Systems', function( module, app ) {
 	events: {
 	    'click button.edit': 'clickEditButton'
 	},
+	_openEdit: false,
+	_editView: false,
 	clickEditButton: function(e) {
-	    console.log("Hello from", this.model.get('id'), "in SYSTEM");
-	    console.log("el is ", this.$el);
-	    window.el=this.$el;
-	    var edit = new Views.SystemEdit({
-		model: this.model
-	    });
-	    edit.render();
-	    this.$el.append( edit.$el );
+	    if( this._editView ) {
+		// the edit view is already open. lets close it
+		this._editView.close();
+		this._editView = null;
+		// remember state
+		this._openEdit = true;
+	    } else {
+		// create & open the edit view
+		this._editView = new Views.SystemEdit({
+		    model: this.model
+		});
+		this._editView.render();
+		this.$el.append( this._editView.$el );
+		// remember our state
+		this._openEdit = false;
+	    }
 	    // TODO some kind of system to dispose of the view when done
 	}
     });
