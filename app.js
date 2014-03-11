@@ -96,43 +96,6 @@ app.data.systems.fetch();
 app.data.games.fetch();
 
 /**
- * Views for the application
- */
-
-app.Views = {};
-
-// Systems
-// -------
-
-app.Views.SystemRow = Marionette.ItemView.extend({
-	template: window.TPL['system-row'],
-	tagName: 'div',
-	className: 'row'
-});
-
-app.Views.SystemList = Marionette.CollectionView.extend({
-	tagName: 'div',
-	className: 'container-fluid',
-	itemView: app.Views.SystemRow
-});
-
-// Games
-// -----
-
-app.Views.GameRow = Marionette.ItemView.extend({
-	template: window.TPL['game-row'],
-	tagName: 'div',
-	className: 'row'
-});
-
-app.Views.GameList = Marionette.CollectionView.extend({
-	tagName: 'div',
-	className: 'container-flud',
-	itemView: app.Views.GameRow
-});
-
-
-/**
  * Games Module
  */
 
@@ -197,6 +160,8 @@ app.module('Systems', function( module, app ) {
 	},
 	clickEditButton: function(e) {
 	    console.log("Hello from", this.model.get('id'), "in SYSTEM");
+	    console.log("el is ", this.$el);
+	    window.el=this.$el;
 	}
     });
 

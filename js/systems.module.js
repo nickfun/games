@@ -31,6 +31,8 @@ app.module('Systems', function( module, app ) {
 	},
 	clickEditButton: function(e) {
 	    console.log("Hello from", this.model.get('id'), "in SYSTEM");
+	    console.log("el is ", this.$el);
+	    window.el=this.$el;
 	}
     });
 

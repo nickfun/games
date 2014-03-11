@@ -17,7 +17,6 @@ module.exports = function(grunt) {
 				src: [
 					'js/tpl.js',
 					'js/app.js',
-					'js/views.js',
 					
 					'js/*.module.js'
 				],
@@ -69,4 +68,3 @@ module.exports = function(grunt) {
     grunt.registerTask('t', ['jst:compile']);
 
 };
-
