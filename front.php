@@ -15,6 +15,10 @@
     }
 
     .row.x { background-color: #ddd; }
+
+    .edit-system-container {
+    background-color: #ddd;
+    }
   </style>
 </head>
 <body>

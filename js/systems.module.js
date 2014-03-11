@@ -44,7 +44,7 @@ app.module('Systems', function( module, app ) {
 		    model: this.model
 		});
 		this._editView.render();
-		this.$el.append( this._editView.$el );
+		this.$el.after( this._editView.$el );
 		// remember our state
 		this._openEdit = false;
 	    }
@@ -60,9 +60,9 @@ app.module('Systems', function( module, app ) {
 
     Views.SystemEdit = Marionette.ItemView.extend({
 	tagName: 'div',
-	className: 'row',
+	className: 'container-fluid edit-system-container',
 	template: window.TPL['system-edit']
     });
-		
+
 });
 
