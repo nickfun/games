@@ -5,14 +5,14 @@
 app.module('Systems', function( module, app ) {
 
     module.addInitializer( function() {
-	    
-	    systemListView = new Views.SystemList({
-		    collection: app.data.systems
-		});
-	    systemListView.render();
-	    
-	    $('#system-list').empty().append(systemListView.el);
+	console.log("INIT: Systems module");
+	systemListView = new Views.SystemList({
+	    collection: app.data.systems
 	});
+	systemListView.render();
+	
+	$('#system-list').empty().append(systemListView.el);
+    });
     
     var systemListView;
     console.log("HELLO");

@@ -44,11 +44,11 @@ this["TPL"]["system-edit"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;
 with (obj) {
-__p += '<div class="row">\n  <div class="col-xs-12 col-lg-3">Name: </div>\n  <div class="col-xs-12 col-lg-3"><input type="text" value="' +
+__p += '<div class="row">\n  <div class="col-xs-12 col-sm-3">Name: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" value="' +
 __e( name ) +
-'"> </div>\n  <div class="col-xs-12 col-lg-3">Company: </div>\n  <div class="col-xs-12 col-lg-3"><select><option>Sony</option><option>Nintendo</option></select> </div>\n</div>\n<div class="row">\n  <div class="col-xs-12 col-lg-3">Release: </div>\n  <div class="col-xs-12 col-lg-3"><input type="text" value="' +
+'"> </div>\n  <div class="col-xs-12 col-sm-3">Company: </div>\n  <div class="col-xs-12 col-sm-3"><select><option>Sony</option><option>Nintendo</option></select> </div>\n</div>\n<div class="row">\n  <div class="col-xs-12 col-sm-3">Release: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" value="' +
 __e( release ) +
-'"> </div>\n  <div class="col-xs-12 col-lg-3">Comments: </div>\n  <div class="col-xs-12 col-lg-3"><input type="text" value="' +
+'"> </div>\n  <div class="col-xs-12 col-sm-3">Comments: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" value="' +
 __e( comments ) +
 '"> </div>\n</div>\n';
 
@@ -85,12 +85,13 @@ var app = new Marionette.Application();
 app.addInitializer( function() {
     console.log("APP has started");
     $('h1').text('Hello world!');
-
+    
     $('div').one('click', function() {
 	var w = document.body.clientWidth;
 	$('#info').text( w );
 	console.log('width is', w);
     });
+    
 });
 
 app.Collections = {
@@ -103,14 +104,22 @@ app.Collections = {
 	})
 };
 
-app.data = {
+app.on('initialize:before', function() {
+    console.log("Consuming bootstraped data");
+    consumeBootstrap( window.__bootstrap );
+});
+
+function consumeBootstrap( boot ) {
+    
+    app.data = {
 	systems: new app.Collections.Systems(),
 	games: new app.Collections.Games()
-};
+    };
+    app.data.systems.add( boot.systems );
+    app.data.games.add( boot.games );
 
-app.data.systems.fetch();
-app.data.games.fetch();
-
+}
+ 
 /**
  * Games Module
  */
@@ -118,6 +127,7 @@ app.data.games.fetch();
 app.module('Games', function( module, app ) {
 
     module.addInitializer( function() {
+	console.log("INIT: games module");
 	gameListView = new Views.GameList({
 	    collection: app.data.games
 	});
@@ -150,14 +160,14 @@ app.module('Games', function( module, app ) {
 app.module('Systems', function( module, app ) {
 
     module.addInitializer( function() {
-	    
-	    systemListView = new Views.SystemList({
-		    collection: app.data.systems
-		});
-	    systemListView.render();
-	    
-	    $('#system-list').empty().append(systemListView.el);
+	console.log("INIT: Systems module");
+	systemListView = new Views.SystemList({
+	    collection: app.data.systems
 	});
+	systemListView.render();
+	
+	$('#system-list').empty().append(systemListView.el);
+    });
     
     var systemListView;
     console.log("HELLO");

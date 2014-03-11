@@ -86,8 +86,9 @@
 
 
 <script>
-app.data.systems = new Backbone.Collection( <?= $bootstrap_systems ?> );
-app.data.games = new Backbone.Collection( <?= $bootstrap_games ?> );
+var __bootstrap = {};
+__bootstrap.systems = <?= $bootstrap_systems ?> ;
+__bootstrap.games = <?= $bootstrap_games ?>;
 app.start();
 </script>
 

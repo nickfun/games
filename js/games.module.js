@@ -5,6 +5,7 @@
 app.module('Games', function( module, app ) {
 
     module.addInitializer( function() {
+	console.log("INIT: games module");
 	gameListView = new Views.GameList({
 	    collection: app.data.games
 	});
