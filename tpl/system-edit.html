@@ -11,7 +11,7 @@ function systemDropdown() {
 }
 
 %>
-<form method="post" action="/system">
+<form method="post" action="/system" class="edit-system">
 <div class="row">
   <div class="col-xs-12 col-sm-3">Name: </div>
   <div class="col-xs-12 col-sm-3"><input type="text" name="name" value="<%- name %>"> </div>
@@ -24,3 +24,11 @@ function systemDropdown() {
   <div class="col-xs-12 col-sm-3">Comments: </div>
   <div class="col-xs-12 col-sm-3"><input type="text" value="<%- comments %>"> </div>
 </div>
+<div class="row">
+    <div class="col-xs-12 col-sm-3">Submit</div>
+    <div class="col-xs-12 col-sm-3">
+    <button type="button" class="btn btn-default btn-sm btn-save">
+    <span class="glyphicon glyphicon-floppy-saved"></span> Save
+    </button></div>
+</div>
+</form>
