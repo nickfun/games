@@ -1,14 +1,22 @@
 <%
 function systemDropdown() {
-   return "<select name='system'><option>sony</option><option>nintendo</option></select>";
+    var companyList = app.data.systems.pluck('company');
+    companyList = _.unique(companyList);
+    companyList = _.sortBy(companyList);
+    var options = _.reduce(companyList, function(memo, company) {
+	memo += "<option>" + company + "</option>";
+	return memo;
+    }, "");
+    return "<select name='system'>" + options + "</select>";
 }
+
 %>
 <form method="post" action="/system">
 <div class="row">
   <div class="col-xs-12 col-sm-3">Name: </div>
   <div class="col-xs-12 col-sm-3"><input type="text" name="name" value="<%- name %>"> </div>
   <div class="col-xs-12 col-sm-3">Company: </div>
-  <div class="col-xs-12 col-sm-3"><%= systemDropdown() %> </div>
+  <div class="col-xs-12 col-sm-3"><%= systemDropdown() %> or new: <input type="text" name="new_company"> </div>
 </div>
 <div class="row">
   <div class="col-xs-12 col-sm-3">Release: </div>

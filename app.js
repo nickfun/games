@@ -48,14 +48,22 @@ with (obj) {
 
 
 function systemDropdown() {
-   return "<select name='system'><option>sony</option><option>nintendo</option></select>";
+    var companyList = app.data.systems.pluck('company');
+    companyList = _.unique(companyList);
+    companyList = _.sortBy(companyList);
+    var options = _.reduce(companyList, function(memo, company) {
+	memo += "<option>" + company + "</option>";
+	return memo;
+    }, "");
+    return "<select name='system'>" + options + "</select>";
 }
+
 ;
 __p += '\n<form method="post" action="/system">\n<div class="row">\n  <div class="col-xs-12 col-sm-3">Name: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" name="name" value="' +
 __e( name ) +
 '"> </div>\n  <div class="col-xs-12 col-sm-3">Company: </div>\n  <div class="col-xs-12 col-sm-3">' +
 ((__t = ( systemDropdown() )) == null ? '' : __t) +
-' </div>\n</div>\n<div class="row">\n  <div class="col-xs-12 col-sm-3">Release: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" value="' +
+' or new: <input type="text" name="new_company"> </div>\n</div>\n<div class="row">\n  <div class="col-xs-12 col-sm-3">Release: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" value="' +
 __e( release ) +
 '"> </div>\n  <div class="col-xs-12 col-sm-3">Comments: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" value="' +
 __e( comments ) +
