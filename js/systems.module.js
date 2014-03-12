@@ -47,8 +47,13 @@ app.module('Systems', function( module, app ) {
 		this.$el.after( this._editView.$el );
 		// remember our state
 		this._openEdit = false;
+		var that=this;
+		this._editView.on('done', function() {
+		    that._editView.close();
+		    that._openEdit = false;
+		});
 	    }
-	    // TODO some kind of system to dispose of the view when done
+	    // TODO some kind of system to dispose of the view when done  
 	}
     });
 
@@ -79,6 +84,7 @@ app.module('Systems', function( module, app ) {
 		this.model.set('company', data.company);
 	    }
 	    this.model.save();
+	    this.trigger('done');
 	}
     });
 
