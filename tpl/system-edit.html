@@ -1,8 +1,14 @@
+<%
+function systemDropdown() {
+   return "<select name='system'><option>sony</option><option>nintendo</option></select>";
+}
+%>
+<form method="post" action="/system">
 <div class="row">
   <div class="col-xs-12 col-sm-3">Name: </div>
-  <div class="col-xs-12 col-sm-3"><input type="text" value="<%- name %>"> </div>
+  <div class="col-xs-12 col-sm-3"><input type="text" name="name" value="<%- name %>"> </div>
   <div class="col-xs-12 col-sm-3">Company: </div>
-  <div class="col-xs-12 col-sm-3"><select><option>Sony</option><option>Nintendo</option></select> </div>
+  <div class="col-xs-12 col-sm-3"><%= systemDropdown() %> </div>
 </div>
 <div class="row">
   <div class="col-xs-12 col-sm-3">Release: </div>

@@ -42,11 +42,20 @@ return __p
 
 this["TPL"]["system-edit"] = function(obj) {
 obj || (obj = {});
-var __t, __p = '', __e = _.escape;
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
 with (obj) {
-__p += '<div class="row">\n  <div class="col-xs-12 col-sm-3">Name: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" value="' +
+
+
+function systemDropdown() {
+   return "<select name='system'><option>sony</option><option>nintendo</option></select>";
+}
+;
+__p += '\n<form method="post" action="/system">\n<div class="row">\n  <div class="col-xs-12 col-sm-3">Name: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" name="name" value="' +
 __e( name ) +
-'"> </div>\n  <div class="col-xs-12 col-sm-3">Company: </div>\n  <div class="col-xs-12 col-sm-3"><select><option>Sony</option><option>Nintendo</option></select> </div>\n</div>\n<div class="row">\n  <div class="col-xs-12 col-sm-3">Release: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" value="' +
+'"> </div>\n  <div class="col-xs-12 col-sm-3">Company: </div>\n  <div class="col-xs-12 col-sm-3">' +
+((__t = ( systemDropdown() )) == null ? '' : __t) +
+' </div>\n</div>\n<div class="row">\n  <div class="col-xs-12 col-sm-3">Release: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" value="' +
 __e( release ) +
 '"> </div>\n  <div class="col-xs-12 col-sm-3">Comments: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" value="' +
 __e( comments ) +
