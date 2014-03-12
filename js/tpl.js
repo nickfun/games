@@ -63,9 +63,9 @@ __p += '\n<form method="post" action="/system" class="edit-system">\n<div class=
 __e( name ) +
 '"> </div>\n  <div class="col-xs-12 col-sm-3">Company: </div>\n  <div class="col-xs-12 col-sm-3">' +
 ((__t = ( systemDropdown() )) == null ? '' : __t) +
-' or new: <input type="text" name="new_company"> </div>\n</div>\n<div class="row">\n  <div class="col-xs-12 col-sm-3">Release: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" value="' +
+' or new: <input type="text" name="new_company"> </div>\n</div>\n<div class="row">\n  <div class="col-xs-12 col-sm-3">Release: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" name="release" value="' +
 __e( release ) +
-'"> </div>\n  <div class="col-xs-12 col-sm-3">Comments: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" value="' +
+'"> </div>\n  <div class="col-xs-12 col-sm-3">Comments: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" name="comments" value="' +
 __e( comments ) +
 '"> </div>\n</div>\n<div class="row">\n    <div class="col-xs-12 col-sm-3">Submit</div>\n    <div class="col-xs-12 col-sm-3">\n    <button type="button" class="btn btn-default btn-sm btn-save">\n    <span class="glyphicon glyphicon-floppy-saved"></span> Save\n    </button></div>\n</div>\n</form>\n';
 

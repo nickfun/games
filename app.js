@@ -63,9 +63,9 @@ __p += '\n<form method="post" action="/system" class="edit-system">\n<div class=
 __e( name ) +
 '"> </div>\n  <div class="col-xs-12 col-sm-3">Company: </div>\n  <div class="col-xs-12 col-sm-3">' +
 ((__t = ( systemDropdown() )) == null ? '' : __t) +
-' or new: <input type="text" name="new_company"> </div>\n</div>\n<div class="row">\n  <div class="col-xs-12 col-sm-3">Release: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" value="' +
+' or new: <input type="text" name="new_company"> </div>\n</div>\n<div class="row">\n  <div class="col-xs-12 col-sm-3">Release: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" name="release" value="' +
 __e( release ) +
-'"> </div>\n  <div class="col-xs-12 col-sm-3">Comments: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" value="' +
+'"> </div>\n  <div class="col-xs-12 col-sm-3">Comments: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" name="comments" value="' +
 __e( comments ) +
 '"> </div>\n</div>\n<div class="row">\n    <div class="col-xs-12 col-sm-3">Submit</div>\n    <div class="col-xs-12 col-sm-3">\n    <button type="button" class="btn btn-default btn-sm btn-save">\n    <span class="glyphicon glyphicon-floppy-saved"></span> Save\n    </button></div>\n</div>\n</form>\n';
 
@@ -233,7 +233,25 @@ app.module('Systems', function( module, app ) {
     Views.SystemEdit = Marionette.ItemView.extend({
 	tagName: 'div',
 	className: 'container-fluid edit-system-container',
-	template: window.TPL['system-edit']
+	template: window.TPL['system-edit'],
+	events: {
+	    'click .btn-save': 'clickSave'
+	},
+	clickSave: function(e) {
+	    console.log("Save button was clicked!");
+	    var data = this.$el.find('form').serializeArray();
+	    // convert to simple name => value
+	    data = _.reduce(data, function(m,v) { m[v.name] = v.value; return m}, {});
+	    this.model.set('name', data.name);
+	    this.model.set('release', data.release);
+	    this.model.set('comments', data.comments);
+	    if( data.new_company ) {
+		this.model.set('company', data.new_company);
+	    } else {
+		this.model.set('company', data.company);
+	    }
+	    this.model.save();
+	}
     });
 
 });

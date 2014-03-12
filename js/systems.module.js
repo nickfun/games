@@ -61,7 +61,25 @@ app.module('Systems', function( module, app ) {
     Views.SystemEdit = Marionette.ItemView.extend({
 	tagName: 'div',
 	className: 'container-fluid edit-system-container',
-	template: window.TPL['system-edit']
+	template: window.TPL['system-edit'],
+	events: {
+	    'click .btn-save': 'clickSave'
+	},
+	clickSave: function(e) {
+	    console.log("Save button was clicked!");
+	    var data = this.$el.find('form').serializeArray();
+	    // convert to simple name => value
+	    data = _.reduce(data, function(m,v) { m[v.name] = v.value; return m}, {});
+	    this.model.set('name', data.name);
+	    this.model.set('release', data.release);
+	    this.model.set('comments', data.comments);
+	    if( data.new_company ) {
+		this.model.set('company', data.new_company);
+	    } else {
+		this.model.set('company', data.company);
+	    }
+	    this.model.save();
+	}
     });
 
 });
