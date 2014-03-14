@@ -77,7 +77,7 @@ $app->put('/systems/:id', function($id) use ($pdo, $app) {
     $sql = "UPDATE systems SET 
 name=:name, 
 company=:company, 
-release=:release, 
+`release`=:release, 
 comments=:comments, 
 num=:num 
 WHERE 

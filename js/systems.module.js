@@ -79,6 +79,7 @@ app.module('Systems', function( module, app ) {
 		this.model.set('company', data.company);
 	    }
 	    this.model.save();
+	    this.$el.slideUp(500);
 	}
     });
 
