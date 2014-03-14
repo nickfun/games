@@ -27,6 +27,9 @@ $model = new Model($pdo);
 // Routes
 // ======
 
+// Serve the front page
+// --------------------
+
 $app->get('/', function() use ($pdo, $app, $model) {
     // only this route is HTML
     $resp = $app->response();
@@ -35,6 +38,9 @@ $app->get('/', function() use ($pdo, $app, $model) {
     $bootstrap_systems = json_encode($model->getAllSystems());
     include('front.php');
 });
+
+// Reading data
+// ------------
 
 $app->get('/systems', function() use ($pdo, $app) {
     $res = $pdo->query('select * from systems');
@@ -60,5 +66,39 @@ $app->get('/game/:id', function($id) use ($pdo,$app) {
     $stm->execute(['id' => $id]);
     echo json_encode($stm->fetchAll());
   });
+
+// Save data
+// ---------
+
+$app->put('/systems/:id', function($id) use ($pdo, $app) {
+    $id = (int) $id;
+    $body = $app->request()->getBody();
+    $row = json_decode($body, true);
+    $sql = "UPDATE systems SET 
+name=:name, 
+company=:company, 
+release=:release, 
+comments=:comments, 
+num=:num 
+WHERE 
+id=:id";
+    $stm = $pdo->prepare($sql);
+    $result = $stm->execute($row);
+    if( !$result ) {
+      // error
+      $app->response()->setStatus(500);
+      $res = array(
+          'status' => 'bad',
+	  'error' => $stm->errorCode() . " MSG:" . print_r($stm->errorInfo(), true)
+      );
+      echo json_encode($res);
+			     
+    } else {
+      // success
+      echo json_encode(['status'=>'ok']);
+    }
+  });
+
+
 
 $app->run();
