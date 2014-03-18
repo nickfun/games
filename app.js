@@ -257,6 +257,7 @@ app.module('Systems', function( module, app ) {
 	    }
 	    this.model.save();
 	    this.trigger('done');
+	    this.$el.slideUp(500);
 	}
     });
 
