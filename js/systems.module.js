@@ -65,7 +65,7 @@ app.module('Systems', function( module, app ) {
 
     Views.SystemEdit = Marionette.ItemView.extend({
 	tagName: 'div',
-	className: 'container-fluid edit-system-container',
+	className: 'container-fluid well',
 	template: window.TPL['system-edit'],
 	events: {
 	    'click .btn-save': 'clickSave'
