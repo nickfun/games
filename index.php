@@ -47,7 +47,7 @@ $app->get('/systems', function() use ($pdo, $app) {
     echo json_encode($res->fetchAll());
 });
 
-$app->get('/system/:id', function($id) use ($pdo, $app) {
+$app->get('/systems/:id', function($id) use ($pdo, $app) {
     $id = (int) $id;
     $stm = $pdo->prepare('select * from systems where id=:id');
     $stm->execute([':id' => $id]);
@@ -60,7 +60,7 @@ $app->get('/games', function() use ($pdo, $app) {
     echo json_encode($res->fetchAll());
   });
 
-$app->get('/game/:id', function($id) use ($pdo,$app) {
+$app->get('/games/:id', function($id) use ($pdo,$app) {
     $id = (int) $id;
     $stm = $pdo->prepare('select * from games where id=:id');
     $stm->execute(['id' => $id]);
