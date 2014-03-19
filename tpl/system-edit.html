@@ -1,5 +1,5 @@
 <%
-function systemDropdown() {
+function companyDropdown() {
     var companyList = app.data.systems.pluck('company');
     companyList = _.unique(companyList);
     companyList = _.sortBy(companyList);
@@ -7,7 +7,7 @@ function systemDropdown() {
 	memo += "<option>" + company + "</option>";
 	return memo;
     }, "");
-    return "<select name='system'>" + options + "</select>";
+    return "<select name='company'>" + options + "</select>";
 }
 
 %>
@@ -16,7 +16,7 @@ function systemDropdown() {
   <div class="col-xs-12 col-sm-3">Name: </div>
   <div class="col-xs-12 col-sm-3"><input type="text" name="name" value="<%- name %>"> </div>
   <div class="col-xs-12 col-sm-3">Company: </div>
-  <div class="col-xs-12 col-sm-3"><%= systemDropdown() %> or new: <input type="text" name="new_company"> </div>
+  <div class="col-xs-12 col-sm-3"><%= companyDropdown() %> or new: <input type="text" name="new_company"> </div>
 </div>
 <div class="row">
   <div class="col-xs-12 col-sm-3">Release: </div>

@@ -10,6 +10,7 @@
        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
        -->
   <link rel="stylesheet" href="http://bootswatch.com/darkly/bootstrap.min.css">
+  <link rel="stylesheet" href="/style.css">
   
   <script src="vendor.js"></script>
   <script src="app.js"></script>

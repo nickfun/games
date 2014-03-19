@@ -47,7 +47,7 @@ function print() { __p += __j.call(arguments, '') }
 with (obj) {
 
 
-function systemDropdown() {
+function companyDropdown() {
     var companyList = app.data.systems.pluck('company');
     companyList = _.unique(companyList);
     companyList = _.sortBy(companyList);
@@ -55,14 +55,14 @@ function systemDropdown() {
 	memo += "<option>" + company + "</option>";
 	return memo;
     }, "");
-    return "<select name='system'>" + options + "</select>";
+    return "<select name='company'>" + options + "</select>";
 }
 
 ;
 __p += '\n<form method="post" action="/system" class="edit-system">\n<div class="row">\n  <div class="col-xs-12 col-sm-3">Name: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" name="name" value="' +
 __e( name ) +
 '"> </div>\n  <div class="col-xs-12 col-sm-3">Company: </div>\n  <div class="col-xs-12 col-sm-3">' +
-((__t = ( systemDropdown() )) == null ? '' : __t) +
+((__t = ( companyDropdown() )) == null ? '' : __t) +
 ' or new: <input type="text" name="new_company"> </div>\n</div>\n<div class="row">\n  <div class="col-xs-12 col-sm-3">Release: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" name="release" value="' +
 __e( release ) +
 '"> </div>\n  <div class="col-xs-12 col-sm-3">Comments: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" name="comments" value="' +

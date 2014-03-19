@@ -1,0 +1,21 @@
+/**
+ * Style for the game app
+ */
+
+/* the view for a System */
+.system-row {
+    padding-top: 4px;
+}
+.system-edit-container .row {
+    padding-top: 4px;
+}
+
+/* The view for a Game */
+.game-row {
+    padding-top: 4px;
+}
+
+/* Input */
+input, select, option {
+    color: black;
+}

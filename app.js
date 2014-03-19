@@ -47,7 +47,7 @@ function print() { __p += __j.call(arguments, '') }
 with (obj) {
 
 
-function systemDropdown() {
+function companyDropdown() {
     var companyList = app.data.systems.pluck('company');
     companyList = _.unique(companyList);
     companyList = _.sortBy(companyList);
@@ -55,14 +55,14 @@ function systemDropdown() {
 	memo += "<option>" + company + "</option>";
 	return memo;
     }, "");
-    return "<select name='system'>" + options + "</select>";
+    return "<select name='company'>" + options + "</select>";
 }
 
 ;
 __p += '\n<form method="post" action="/system" class="edit-system">\n<div class="row">\n  <div class="col-xs-12 col-sm-3">Name: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" name="name" value="' +
 __e( name ) +
 '"> </div>\n  <div class="col-xs-12 col-sm-3">Company: </div>\n  <div class="col-xs-12 col-sm-3">' +
-((__t = ( systemDropdown() )) == null ? '' : __t) +
+((__t = ( companyDropdown() )) == null ? '' : __t) +
 ' or new: <input type="text" name="new_company"> </div>\n</div>\n<div class="row">\n  <div class="col-xs-12 col-sm-3">Release: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" name="release" value="' +
 __e( release ) +
 '"> </div>\n  <div class="col-xs-12 col-sm-3">Comments: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" name="comments" value="' +
@@ -101,14 +101,6 @@ var app = new Marionette.Application();
 
 app.addInitializer( function() {
     console.log("APP has started");
-    $('h1').text('Hello world!');
-    
-    $('div').one('click', function() {
-	var w = document.body.clientWidth;
-	$('#info').text( w );
-	console.log('width is', w);
-    });
-    
 });
 
 app.Collections = {
@@ -127,16 +119,14 @@ app.on('initialize:before', function() {
 });
 
 function consumeBootstrap( boot ) {
-    
     app.data = {
 	systems: new app.Collections.Systems(),
 	games: new app.Collections.Games()
     };
     app.data.systems.add( boot.systems );
     app.data.games.add( boot.games );
-
 }
- 
+
 /**
  * Games Module
  */
@@ -159,12 +149,12 @@ app.module('Games', function( module, app ) {
     Views.GameRow = Marionette.ItemView.extend({
 	template: window.TPL['game-row'],
 	tagName: 'div',
-	className: 'row'
+	className: 'row game-row'
     });
     
     Views.GameList = Marionette.CollectionView.extend({
 	tagName: 'div',
-	className: 'container-flud',
+	className: 'container-fluid',
 	itemView: Views.GameRow
     });
 
@@ -197,7 +187,7 @@ app.module('Systems', function( module, app ) {
     Views.SystemRow = Marionette.ItemView.extend({
 	template: window.TPL['system-row'],
 	tagName: 'div',
-	className: 'row',
+	className: 'row system-row',
 	events: {
 	    'click button.edit': 'clickEditButton'
 	},
@@ -237,7 +227,7 @@ app.module('Systems', function( module, app ) {
 
     Views.SystemEdit = Marionette.ItemView.extend({
 	tagName: 'div',
-	className: 'container-fluid edit-system-container',
+	className: 'container-fluid well system-edit-container',
 	template: window.TPL['system-edit'],
 	events: {
 	    'click .btn-save': 'clickSave'

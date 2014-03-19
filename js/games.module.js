@@ -20,12 +20,12 @@ app.module('Games', function( module, app ) {
     Views.GameRow = Marionette.ItemView.extend({
 	template: window.TPL['game-row'],
 	tagName: 'div',
-	className: 'row'
+	className: 'row game-row'
     });
     
     Views.GameList = Marionette.CollectionView.extend({
 	tagName: 'div',
-	className: 'container-flud',
+	className: 'container-fluid',
 	itemView: Views.GameRow
     });
 

@@ -82,8 +82,17 @@ comments=:comments,
 num=:num 
 WHERE 
 id=:id";
+    $copylist = ['name','company','release','comments','num','id'];
+    $sqldata = array();
+    foreach( $copylist as $key ) {
+	$sqldata[$key] = $row[$key];
+    }
     $stm = $pdo->prepare($sql);
-    $result = $stm->execute($row);
+    try {
+	$result = $stm->execute($sqldata);
+    } catch( Exception  $e ) {
+	echo "EXCEPTION " . $e->getMessage();
+    }
     if( !$result ) {
       // error
       $app->response()->setStatus(500);
@@ -99,6 +108,7 @@ id=:id";
     }
   });
 
-
+// Done defining routes
+// --------------------
 
 $app->run();

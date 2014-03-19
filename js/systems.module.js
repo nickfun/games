@@ -25,7 +25,7 @@ app.module('Systems', function( module, app ) {
     Views.SystemRow = Marionette.ItemView.extend({
 	template: window.TPL['system-row'],
 	tagName: 'div',
-	className: 'row',
+	className: 'row system-row',
 	events: {
 	    'click button.edit': 'clickEditButton'
 	},
@@ -65,7 +65,7 @@ app.module('Systems', function( module, app ) {
 
     Views.SystemEdit = Marionette.ItemView.extend({
 	tagName: 'div',
-	className: 'container-fluid well',
+	className: 'container-fluid well system-edit-container',
 	template: window.TPL['system-edit'],
 	events: {
 	    'click .btn-save': 'clickSave'
