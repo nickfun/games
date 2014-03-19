@@ -213,11 +213,7 @@ app.module('Systems', function( module, app ) {
 		this._editView.on('done', function() {
 		    that._editView.close();
 		    that._openEdit = false;
-		    that.model.fetch({
-			success: function(model, response, options) {
-			    that.render();
-			}
-		    });
+		    that.render();
 		});
 	    }
 	    // TODO some kind of system to dispose of the view when done  
