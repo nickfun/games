@@ -55,19 +55,19 @@ function companyDropdown() {
 	memo += "<option>" + company + "</option>";
 	return memo;
     }, "");
-    return "<select name='company'>" + options + "</select>";
+    return "<select name='company' class='form-control'>" + options + "</select>";
 }
 
 ;
-__p += '\n<form method="post" action="/system" class="edit-system">\n<div class="row">\n  <div class="col-xs-12 col-sm-3">Name: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" name="name" value="' +
-__e( name ) +
-'"> </div>\n  <div class="col-xs-12 col-sm-3">Company: </div>\n  <div class="col-xs-12 col-sm-3">' +
+__p += '\n<div class="row">\n  <div class="col-sm-6 col-xs-12">\n    <form method="post" action="/system" class="edit-system" role="form">\n      <div class="form-group">\n\t<label>Company\n\t  ' +
 ((__t = ( companyDropdown() )) == null ? '' : __t) +
-' or new: <input type="text" name="new_company"> </div>\n</div>\n<div class="row">\n  <div class="col-xs-12 col-sm-3">Release: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" name="release" value="' +
+'\n\t</label>\n\t<br>\n\t<label>Or, new:\n\t  <input type="text" name="new_company" class="form-control">\n\t</label>\n      </div>\n      <div class="form-group">\n\t<label>System Name\n\t  <input type="text" name="name" class="form-control" value="' +
+__e( name ) +
+'">\n\t</label>\n      </div>\n      <div class="form-group">\n\t<label>Release\n\t  <input type="text" name="release" class="form-control" value="' +
 __e( release ) +
-'"> </div>\n  <div class="col-xs-12 col-sm-3">Comments: </div>\n  <div class="col-xs-12 col-sm-3"><input type="text" name="comments" value="' +
+'">\n\t</label>\n      </div>\n      <div class="form-group">\n\t<label for="comments">Comments</label>\n\t<textarea name="comments" class="form-control">' +
 __e( comments ) +
-'"> </div>\n</div>\n<div class="row">\n    <div class="col-xs-12 col-sm-3">Submit</div>\n    <div class="col-xs-12 col-sm-3">\n    <button type="button" class="btn btn-default btn-sm btn-save">\n    <span class="glyphicon glyphicon-floppy-saved"></span> Save\n    </button></div>\n</div>\n</form>\n';
+'</textarea>\n      </div>\n    </form>\n  </div>\n</div>\n';
 
 }
 return __p
@@ -80,15 +80,15 @@ function print() { __p += __j.call(arguments, '') }
 with (obj) {
 
  // name company release comments ;
-__p += '\n\n<div class="col-sm-3">\n\t<button type="button" class="btn btn-default btn-sm edit">\n\t\t<span class="glyphicon glyphicon-star"></span> Edit\n\t</button>\n\t<strong>' +
+__p += '\n<div class="row">\n  <div class="col-sm-8">\n    <button type="button" class="btn btn-default btn-sm edit">\n      <span class="glyphicon glyphicon-star"></span> Edit\n    </button>\n    <strong>' +
 __e( company ) +
 ' ' +
 __e( name ) +
-'</strong>\n</div>\n<div class="col-sm-9">' +
+'</strong>\n  </div>\n  <div class="col-sm-4">' +
 __e( release ) +
-'</div>\n<div clsss="col-sm-12">' +
+'</div>\n</div>\n<div class="row">\n  <div class="col-sm-11 col-sm-offset-1">' +
 __e( comments ) +
-'</div>\n\n\n';
+'</div>\n</div>\n\n';
 
 }
 return __p
