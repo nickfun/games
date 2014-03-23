@@ -9,9 +9,8 @@
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
 
   <link rel="stylesheet" href="/style.css">
-  
-  <script src="vendor.js"></script>
-  <script src="app.js"></script>
+ 
+  <script src="/out/spa.js"></script>
 </head>
 <body>
 

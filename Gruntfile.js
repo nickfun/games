@@ -2,6 +2,9 @@
 
 module.exports = function(grunt) {
     grunt.initConfig({
+	/**
+	   Concat the files
+	*/
 	concat: {
 	    vendor: {
 		src: [
@@ -12,28 +15,46 @@ module.exports = function(grunt) {
 		    'js/bootstrap.min.js',
 		    'js/moment.min.js'
 		],
-		dest: 'vendor.js'
+		dest: 'out/vendor.js'
 	    },
 	    app: {
 		src: [
-		    'js/tpl.js',
+		    'out/tpl.js',
 		    'js/app.js',
 		    'js/config.js',
 		    'js/*.module.js'
 		],
-		dest: 'app.js'
+		dest: 'out/app.js'
+	    },
+	    final: {
+		src: [
+		    'out/vendor.js',
+		    'out/tpl.js',
+		    'out/app.js'
+		],
+		dest: 'out/spa.js'
 	    }
 	},
+	/**
+	   Minify the files
+	*/
 	uglify: {
 	    vendor: {
-		src: 'vendor.js',
-		dest: 'vendor.min.js'
+		src: 'out/vendor.js',
+		dest: 'out/vendor.min.js'
 	    },
 	    app: {
-		src: 'app.js',
-		dest: 'app.min.js'
+		src: 'out/app.js',
+		dest: 'out/app.min.js'
+	    },
+	    spa: {
+		src: 'out/spa.js',
+		dest: 'out/spa.min.js'
 	    }
 	},
+	/**
+	   Compile Templates
+	*/
 	jst: {
 	    options: {
 		namespace: 'TPL',
@@ -45,10 +66,13 @@ module.exports = function(grunt) {
 	    },
 	    compile: {
 		files: {
-		    "js/tpl.js": ["tpl/*html"]
+		    "out/tpl.js": ["tpl/*html"]
 		}
 	    }
 	},
+	/**
+	   WATCHER
+	*/
 	watch: {
 	    app: {
 		files: [
