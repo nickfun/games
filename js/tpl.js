@@ -25,13 +25,20 @@ function extras( options ) {
 	return output;
 }
 
+function showDate( release ) {
+    if( release === "0000-00-00" ) {
+	return "<i>No release date</i>";
+    }
+    return moment(release).format( app.config.dateFormat );
+}
+
 ;
 __p += '\n<div class="col-sm-3">' +
 ((__t = ( name )) == null ? '' : __t) +
-'</div>\n<div class="col-sm-2">' +
-((__t = ( release )) == null ? '' : __t) +
-' ' +
+'</div>\n<div class="col-sm-2"> ' +
 ((__t = ( extras(obj) )) == null ? '' : __t) +
+' ' +
+((__t = ( showDate(release) )) == null ? '' : __t) +
 ' </div>\n<div class="col-sm-7">\n\t<button type="button" class="btn btn-default btn-sm">\n\t\t<span class="glyphicon glyphicon-star"></span> Edit\n\t</button>\n\t' +
 ((__t = ( comment )) == null ? '' : __t) +
 '\n</div>\n\n';
@@ -89,7 +96,7 @@ __e( company ) +
 ' ' +
 __e( name ) +
 '</strong>\n  </div>\n  <div class="col-sm-4">' +
-__e( release ) +
+__e( moment(release).format(app.config.dateFormat) ) +
 '</div>\n</div>\n<div class="row">\n  <div class="col-sm-11 col-sm-offset-1">' +
 __e( comments ) +
 '</div>\n</div>\n\n';

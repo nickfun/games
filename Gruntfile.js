@@ -9,7 +9,8 @@ module.exports = function(grunt) {
 		    'js/lodash.min.js',
 		    'js/backbone.js',
 		    'js/backbone.marionette.min.js',
-		    'js/bootstrap.min.js'
+		    'js/bootstrap.min.js',
+		    'js/moment.min.js'
 		],
 		dest: 'vendor.js'
 	    },
@@ -49,7 +50,7 @@ module.exports = function(grunt) {
 	    }
 	},
 	watch: {
-	    tpl: {
+	    app: {
 		files: [
 		    'js/*.js',
 		    'tpl/*.html'
@@ -65,6 +66,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     
     grunt.registerTask('default', ['jst', 'concat']);
+    grunt.registerTask('full', ['jst','concat','uglify']);
     grunt.registerTask('t', ['jst:compile']);
     
 };

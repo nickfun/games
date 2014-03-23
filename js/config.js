@@ -3,5 +3,5 @@
 */
 
 app.config = {
-    dateFormat: 'MMMM Do YYYY'
+    dateFormat: 'MMMM Do, YYYY'
 };

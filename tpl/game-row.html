@@ -17,9 +17,16 @@ function extras( options ) {
 	return output;
 }
 
+function showDate( release ) {
+    if( release === "0000-00-00" ) {
+	return "<i>No release date</i>";
+    }
+    return moment(release).format( app.config.dateFormat );
+}
+
 %>
 <div class="col-sm-3"><%= name %></div>
-<div class="col-sm-2"><%= release %> <%= extras(obj) %> </div>
+<div class="col-sm-2"> <%= extras(obj) %> <%= showDate(release) %> </div>
 <div class="col-sm-7">
 	<button type="button" class="btn btn-default btn-sm">
 		<span class="glyphicon glyphicon-star"></span> Edit

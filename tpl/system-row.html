@@ -6,7 +6,7 @@
     </button>
     <strong><%- company %> <%- name %></strong>
   </div>
-  <div class="col-sm-4"><%- release %></div>
+  <div class="col-sm-4"><%- moment(release).format(app.config.dateFormat) %></div>
 </div>
 <div class="row">
   <div class="col-sm-11 col-sm-offset-1"><%- comments %></div>
