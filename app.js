@@ -131,6 +131,14 @@ function consumeBootstrap( boot ) {
     app.data.games.add( boot.games );
 }
 
+/*
+  Application Config
+*/
+
+app.config = {
+    dateFormat: 'MMMM Do YYYY'
+};
+
 /**
  * Games Module
  */

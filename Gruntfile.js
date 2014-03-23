@@ -14,12 +14,12 @@ module.exports = function(grunt) {
 		dest: 'vendor.js'
 	    },
 	    app: {
-				src: [
-				    'js/tpl.js',
-				    'js/app.js',
-				    
-				    'js/*.module.js'
-				],
+		src: [
+		    'js/tpl.js',
+		    'js/app.js',
+		    'js/config.js',
+		    'js/*.module.js'
+		],
 		dest: 'app.js'
 	    }
 	},
