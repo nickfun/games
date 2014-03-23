@@ -67,7 +67,7 @@ __e( name ) +
 __e( release ) +
 '">\n\t</label>\n      </div>\n      <div class="form-group">\n\t<label for="comments">Comments</label>\n\t<textarea name="comments" class="form-control">' +
 __e( comments ) +
-'</textarea>\n      </div>\n    </form>\n  </div>\n</div>\n';
+'</textarea>\n      </div>\n      <div class="form-group">\n\t<button type="submit" value="Edit System" class="btn btn-default">\n\t  <i class="glyphicon glyphicon-floppy-disk"></i> Save Changes\n\t</button>\n      </div>\n    </form>\n  </div>\n</div>\n';
 
 }
 return __p
