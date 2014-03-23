@@ -1,10 +1,14 @@
 <%
-function companyDropdown() {
+function companyDropdown(selectedCompany) {
     var companyList = app.data.systems.pluck('company');
     companyList = _.unique(companyList);
     companyList = _.sortBy(companyList);
     var options = _.reduce(companyList, function(memo, company) {
-	memo += "<option>" + company + "</option>";
+	var extra = "";
+	if( company == selectedCompany ) {
+	    extra = " selected='selected'";
+	}
+	memo += "<option" + extra + ">" + company + "</option>";
 	return memo;
     }, "");
     return "<select name='company' class='form-control'>" + options + "</select>";
@@ -13,10 +17,10 @@ function companyDropdown() {
 %>
 <div class="row">
   <div class="col-sm-6 col-xs-12">
-    <form method="post" action="/system" class="edit-system" role="form">
+    <form method="post" action="/system" class="form-edit-system" role="form">
       <div class="form-group">
 	<label>Company
-	  <%= companyDropdown() %>
+	  <%= companyDropdown(company) %>
 	</label>
 	<br>
 	<label>Or, new:

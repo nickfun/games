@@ -15,7 +15,6 @@ app.module('Systems', function( module, app ) {
     });
     
     var systemListView;
-    console.log("HELLO");
 
     // Views
     // -------
@@ -29,17 +28,16 @@ app.module('Systems', function( module, app ) {
 	events: {
 	    'click button.edit': 'clickEditButton'
 	},
-	_openEdit: false,
 	_editView: false,
 	clickEditButton: function(e) {
 	    if( this._editView ) {
 		// the edit view is already open. lets close it
 		this._editView.close();
 		this._editView = null;
-		// remember state
-		this._openEdit = true;
+		console.log("Close edit form");
 	    } else {
 		// create & open the edit view
+		console.log("Open edit form");
 		this._editView = new Views.SystemEdit({
 		    model: this.model
 		});
@@ -48,13 +46,14 @@ app.module('Systems', function( module, app ) {
 		// remember our state
 		this._openEdit = false;
 		var that=this;
-		this._editView.on('done', function() {
+		that.listenTo(this._editView, 'done', function() {
+		    that.stopListening(this._editView);
 		    that._editView.close();
-		    that._openEdit = false;
+		    that._editView = null;
 		    that.render();
+		    console.log("Close edit form, it is done");
 		});
 	    }
-	    // TODO some kind of system to dispose of the view when done  
 	}
     });
 
@@ -69,9 +68,10 @@ app.module('Systems', function( module, app ) {
 	className: 'container-fluid well system-edit-container',
 	template: window.TPL['system-edit'],
 	events: {
-	    'click .btn-save': 'clickSave'
+	    'submit .form-edit-system': 'formSave'
 	},
-	clickSave: function(e) {
+	formSave: function(e) {
+	    e.preventDefault();
 	    console.log("Save button was clicked!");
 	    var data = this.$el.find('form').serializeArray();
 	    // convert to simple name => value

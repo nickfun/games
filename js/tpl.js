@@ -47,20 +47,24 @@ function print() { __p += __j.call(arguments, '') }
 with (obj) {
 
 
-function companyDropdown() {
+function companyDropdown(selectedCompany) {
     var companyList = app.data.systems.pluck('company');
     companyList = _.unique(companyList);
     companyList = _.sortBy(companyList);
     var options = _.reduce(companyList, function(memo, company) {
-	memo += "<option>" + company + "</option>";
+	var extra = "";
+	if( company == selectedCompany ) {
+	    extra = " selected='selected'";
+	}
+	memo += "<option" + extra + ">" + company + "</option>";
 	return memo;
     }, "");
     return "<select name='company' class='form-control'>" + options + "</select>";
 }
 
 ;
-__p += '\n<div class="row">\n  <div class="col-sm-6 col-xs-12">\n    <form method="post" action="/system" class="edit-system" role="form">\n      <div class="form-group">\n\t<label>Company\n\t  ' +
-((__t = ( companyDropdown() )) == null ? '' : __t) +
+__p += '\n<div class="row">\n  <div class="col-sm-6 col-xs-12">\n    <form method="post" action="/system" class="form-edit-system" role="form">\n      <div class="form-group">\n\t<label>Company\n\t  ' +
+((__t = ( companyDropdown(company) )) == null ? '' : __t) +
 '\n\t</label>\n\t<br>\n\t<label>Or, new:\n\t  <input type="text" name="new_company" class="form-control">\n\t</label>\n      </div>\n      <div class="form-group">\n\t<label>System Name\n\t  <input type="text" name="name" class="form-control" value="' +
 __e( name ) +
 '">\n\t</label>\n      </div>\n      <div class="form-group">\n\t<label>Release\n\t  <input type="text" name="release" class="form-control" value="' +
