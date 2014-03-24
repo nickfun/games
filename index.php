@@ -70,6 +70,40 @@ $app->get('/games/:id', function($id) use ($pdo,$app) {
 // Save data
 // ---------
 
+$app->put('/games/:id', function($id) use ($pdo, $app) {
+    $id = (int) $id;
+    $body = $app->request()->getBody();
+    $row = json_decode($body, true);
+    $attributes = ['name','sysid','release','has_case','has_docs','is_ghit','is_limited','is_complete','is_broken','comment','id'];
+    $sql = "UPDATE games SET
+name = :name,
+sysid = :sysid,
+`release` = :release,
+has_case = :has_case,
+has_docs = :has_docs,
+is_ghit = :is_ghit,
+is_limited = :is_limited,
+is_complete = :is_complete,
+is_broken = :is_broken,
+comment = :comment
+WHERE
+id = :id";
+    $saveData = array();
+    foreach( $attributes as $i ) {
+        $saveData[$i] = $row[$i];
+    }
+    $stm = $pdo->prepare($sql);
+    $result = $stm->execute($saveData);
+    if( !$result ) {
+      // error
+      $app->response()->setStatus(500);
+      $res = ['status'=>'bad','error'=>$stm->errorCode(),'msg'=>print_r($stm->errorInfo(),true)];
+    } else {
+      $res = ['status'=>'ok','msg'=>'game saved'];
+    }
+    echo json_encode($res);
+});
+
 $app->put('/systems/:id', function($id) use ($pdo, $app) {
     $id = (int) $id;
     $body = $app->request()->getBody();
