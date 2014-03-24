@@ -1740,18 +1740,18 @@ __e( id ) +
 '">' +
 __e( comment ) +
 '</textarea>\n      </div>\n      <div class="form-group"><label> <input type="checkbox" name="is_complete" ' +
-((__t = ( checked(has_case) )) == null ? '' : __t) +
+((__t = ( checked(is_complete) )) == null ? '' : __t) +
 '> Is Complete  </label></div>\n      <div class="form-group"><label> <input type="checkbox" name="has_case" ' +
 ((__t = ( checked(has_case) )) == null ? '' : __t) +
 '> Has Case  </label></div>\n      <div class="form-group"><label> <input type="checkbox" name="has_docs" ' +
-((__t = ( checked(has_case) )) == null ? '' : __t) +
+((__t = ( checked(has_docs) )) == null ? '' : __t) +
 '> Has Documents/Manual  </label></div>\n      <div class="form-group"><label> <input type="checkbox" name="is_ghit" ' +
-((__t = ( checked(has_case) )) == null ? '' : __t) +
+((__t = ( checked(is_ghit) )) == null ? '' : __t) +
 '> Is Greatest Hits  </label></div>\n      <div class="form-group"><label> <input type="checkbox" name="is_limited" ' +
-((__t = ( checked(has_case) )) == null ? '' : __t) +
+((__t = ( checked(is_limited) )) == null ? '' : __t) +
 '> Is Limited Edtion  </label></div>\n      <div class="form-group"><label> <input type="checkbox" name="is_broken" ' +
-((__t = ( checked(has_case) )) == null ? '' : __t) +
-'> Is Broken  </label></div>\n      <div class="form-group">\n\t<button type="submit" class="btn-default btn">\n\t  <i class="glyphicon glyphicon-floppy-disk"></i>\n\t  Save Changes\n\t</button>\n      </div>\n    </form>\n  </div>\n</div>\n';
+((__t = ( checked(is_broken) )) == null ? '' : __t) +
+'> Is Broken  </label></div>\n      <div class="form-group">\n\t<button type="submit" class="btn-default btn">\n\t  <i class="glyphicon glyphicon-floppy-disk"></i>\n\t  Save Changes\n\t</button>\n\t<button type="button" class="btn-cancel btn-default btn">\n\t  <i class="glyphicon glyphicon-remove"></i>\n\t  Cancel\n\t</button>\n      </div>\n    </form>\n  </div>\n</div>\n';
 
 }
 return __p
@@ -1898,18 +1898,18 @@ __e( id ) +
 '">' +
 __e( comment ) +
 '</textarea>\n      </div>\n      <div class="form-group"><label> <input type="checkbox" name="is_complete" ' +
-((__t = ( checked(has_case) )) == null ? '' : __t) +
+((__t = ( checked(is_complete) )) == null ? '' : __t) +
 '> Is Complete  </label></div>\n      <div class="form-group"><label> <input type="checkbox" name="has_case" ' +
 ((__t = ( checked(has_case) )) == null ? '' : __t) +
 '> Has Case  </label></div>\n      <div class="form-group"><label> <input type="checkbox" name="has_docs" ' +
-((__t = ( checked(has_case) )) == null ? '' : __t) +
+((__t = ( checked(has_docs) )) == null ? '' : __t) +
 '> Has Documents/Manual  </label></div>\n      <div class="form-group"><label> <input type="checkbox" name="is_ghit" ' +
-((__t = ( checked(has_case) )) == null ? '' : __t) +
+((__t = ( checked(is_ghit) )) == null ? '' : __t) +
 '> Is Greatest Hits  </label></div>\n      <div class="form-group"><label> <input type="checkbox" name="is_limited" ' +
-((__t = ( checked(has_case) )) == null ? '' : __t) +
+((__t = ( checked(is_limited) )) == null ? '' : __t) +
 '> Is Limited Edtion  </label></div>\n      <div class="form-group"><label> <input type="checkbox" name="is_broken" ' +
-((__t = ( checked(has_case) )) == null ? '' : __t) +
-'> Is Broken  </label></div>\n      <div class="form-group">\n\t<button type="submit" class="btn-default btn">\n\t  <i class="glyphicon glyphicon-floppy-disk"></i>\n\t  Save Changes\n\t</button>\n      </div>\n    </form>\n  </div>\n</div>\n';
+((__t = ( checked(is_broken) )) == null ? '' : __t) +
+'> Is Broken  </label></div>\n      <div class="form-group">\n\t<button type="submit" class="btn-default btn">\n\t  <i class="glyphicon glyphicon-floppy-disk"></i>\n\t  Save Changes\n\t</button>\n\t<button type="button" class="btn-cancel btn-default btn">\n\t  <i class="glyphicon glyphicon-remove"></i>\n\t  Cancel\n\t</button>\n      </div>\n    </form>\n  </div>\n</div>\n';
 
 }
 return __p
@@ -2117,11 +2117,17 @@ app.module('Games', function( module, app ) {
 	tagName: 'div',
 	className: 'container-fluid well system-edit-container',
 	events: {
-	    'submit .form-edit-game': 'formSave'
+	    'submit .form-edit-game': 'formSave',
+	    'click .btn-cancel': 'btnCancel'
 	},
 	formSave: function(e) {
 	    e.preventDefault();
 	    console.log('Save button was clicked for a Game!');
+	    this.trigger('done');
+	},
+	btnCancel: function(e) {
+	    e.preventDefault();
+	    console.log("CANCEL edit game");
 	    this.trigger('done');
 	}
     });

@@ -54,11 +54,17 @@ app.module('Games', function( module, app ) {
 	tagName: 'div',
 	className: 'container-fluid well system-edit-container',
 	events: {
-	    'submit .form-edit-game': 'formSave'
+	    'submit .form-edit-game': 'formSave',
+	    'click .btn-cancel': 'btnCancel'
 	},
 	formSave: function(e) {
 	    e.preventDefault();
 	    console.log('Save button was clicked for a Game!');
+	    this.trigger('done');
+	},
+	btnCancel: function(e) {
+	    e.preventDefault();
+	    console.log("CANCEL edit game");
 	    this.trigger('done');
 	}
     });

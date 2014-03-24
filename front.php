@@ -15,12 +15,9 @@
   <body>
     
     <h1>My Game Collection!</h1>
-
-    <fieldset>
-      <legend>Systems
-      </legend>
-      <div id="system-list"></div>
-    </fieldset>
+    
+    <h2>Systems</h2>
+    <div id="system-list"></div>
     
     <h2>Games</h2>
     <div id="game-list"></div>
