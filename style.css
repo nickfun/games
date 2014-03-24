@@ -19,3 +19,6 @@
 input, select, option {
     color: black;
 }
+textarea {
+    width: 100%;
+}

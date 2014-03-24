@@ -46,8 +46,7 @@ app.module('Systems', function( module, app ) {
 		// remember our state
 		this._openEdit = false;
 		var that=this;
-		that.listenTo(this._editView, 'done', function() {
-		    that.stopListening(this._editView);
+		that.listenToOnce(this._editView, 'done', function() {
 		    that._editView.close();
 		    that._editView = null;
 		    that.render();

@@ -1,5 +1,40 @@
 this["TPL"] = this["TPL"] || {};
 
+this["TPL"]["game-edit"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
+with (obj) {
+
+
+    function systemDropdown() {
+	var out = "<select name='system' class='form-control'>";
+	app.data.systems.each(function(system) {
+	    var name = system.get('company') + ' ' + system.get('name');
+	    out += "<option value=" + system.get('id') + ">" + name + "</option>";
+	});
+	out += "</select>";
+	return out;
+    }
+;
+__p += '\n<div class="row">\n  <div class="col-sm-6 col-xs-12">\n    <form method="post" action="/games/' +
+__e( id ) +
+'" method="PUT">\n      <div class="form-group">\n\t<label>Name <input type="text" name="name" class="form-control" value="' +
+__e( name ) +
+'"></label>\n      </div>\n      <div class="form-group">\n        <label>System ' +
+((__t = ( systemDropdown() )) == null ? '' : __t) +
+'</label>\n      </div>\n      <div class="form-group">\n\t<label for="comments-game-' +
+__e( id ) +
+'">Comments</label>\n\t<textarea name="comment" class="form-control" id="comments-game-' +
+__e( id ) +
+'">' +
+__e( comment ) +
+'</textarea>\n      </div>\n      <div class="form-group">\n\t<button type="submit" class="btn-default btn">\n\t  <i class="glyphicon glyphicon-floppy-disk"></i>\n\t  Save Changes\n\t</button>\n      </div>\n    </form>\n  </div>\n</div>\n';
+
+}
+return __p
+};
+
 this["TPL"]["game-row"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
@@ -39,7 +74,7 @@ __p += '\n<div class="col-sm-3">' +
 ((__t = ( extras(obj) )) == null ? '' : __t) +
 ' ' +
 ((__t = ( showDate(release) )) == null ? '' : __t) +
-' </div>\n<div class="col-sm-7">\n\t<button type="button" class="btn btn-default btn-sm">\n\t\t<span class="glyphicon glyphicon-star"></span> Edit\n\t</button>\n\t' +
+' </div>\n<div class="col-sm-7">\n\t<button type="button" class="btn btn-default btn-sm btn-edit-game">\n\t\t<span class="glyphicon glyphicon-star"></span> Edit\n\t</button>\n\t' +
 ((__t = ( comment )) == null ? '' : __t) +
 '\n</div>\n\n';
 
@@ -168,9 +203,49 @@ app.module('Games', function( module, app ) {
     Views.GameRow = Marionette.ItemView.extend({
 	template: window.TPL['game-row'],
 	tagName: 'div',
-	className: 'row game-row'
+	className: 'row game-row',
+	events: {
+	    'click .btn-edit-game': 'clickEditButton'
+	},
+	clickEditButton: function(e) {
+	    e.preventDefault();
+	    if( this._editView ) {
+		// the view is open. Close it
+		this._editView.close();
+		this._editView = null;
+		console.log("Close game edit view");
+	    } else {
+		// Open the Edit View
+		this._editView = new Views.GameEdit({
+		    model: this.model
+		});
+		this._editView.render();
+		this.$el.after( this._editView.$el );
+		var that=this;
+		this.listenToOnce( this._editView, 'done', function() {
+		    that._editView.close();
+		    that._editView = null;
+		    that.render();
+		    console.log("game edit view closed, it is done");
+		});
+	    }
+	}
     });
-    
+
+    Views.GameEdit = Marionette.ItemView.extend({
+	template: window.TPL['game-edit'],
+	tagName: 'div',
+	className: 'container-fluid well system-edit-container',
+	events: {
+	    'submit .form-edit-game': 'formSave'
+	},
+	formSave: function(e) {
+	    e.preventDefault();
+	    console.log('Save button was clicked for a Game!');
+	    this.trigger('done');
+	}
+    });
+
     Views.GameList = Marionette.CollectionView.extend({
 	tagName: 'div',
 	className: 'container-fluid',
@@ -227,8 +302,7 @@ app.module('Systems', function( module, app ) {
 		// remember our state
 		this._openEdit = false;
 		var that=this;
-		that.listenTo(this._editView, 'done', function() {
-		    that.stopListening(this._editView);
+		that.listenToOnce(this._editView, 'done', function() {
 		    that._editView.close();
 		    that._editView = null;
 		    that.render();
