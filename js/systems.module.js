@@ -6,13 +6,22 @@ app.module('Systems', function( module, app ) {
 
     module.addInitializer( function() {
 	console.log("INIT: Systems module");
+	_sortSystems();
 	systemListView = new Views.SystemList({
 	    collection: app.data.systems
 	});
 	systemListView.render();
-	
 	$('#system-list').empty().append(systemListView.el);
     });
+
+    function _sortSystems() {
+	app.data.systems.comparator = _systemCompare;
+	app.data.systems.sort();
+    }
+
+    function _systemCompare(s) {
+	return s.get('company') + ' ' + s.get('name');
+    }
     
     var systemListView;
 

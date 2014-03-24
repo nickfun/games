@@ -8,10 +8,15 @@
 	out += "</select>";
 	return out;
     }
+
+   function checked(x) {
+     if( x==1 ) { return " checked='checked'"; }
+     return "";
+   }
 %>
 <div class="row">
   <div class="col-sm-6 col-xs-12">
-    <form method="post" action="/games/<%- id %>" method="PUT">
+    <form method="post" action="/games/<%- id %>" method="PUT" class="form-edit-game">
       <div class="form-group">
 	<label>Name <input type="text" name="name" class="form-control" value="<%- name %>"></label>
       </div>
@@ -22,6 +27,12 @@
 	<label for="comments-game-<%- id %>">Comments</label>
 	<textarea name="comment" class="form-control" id="comments-game-<%- id %>"><%- comment %></textarea>
       </div>
+      <div class="form-group"><label> <input type="checkbox" name="is_complete" <%= checked(has_case) %>> Is Complete  </label></div>
+      <div class="form-group"><label> <input type="checkbox" name="has_case" <%= checked(has_case) %>> Has Case  </label></div>
+      <div class="form-group"><label> <input type="checkbox" name="has_docs" <%= checked(has_case) %>> Has Documents/Manual  </label></div>
+      <div class="form-group"><label> <input type="checkbox" name="is_ghit" <%= checked(has_case) %>> Is Greatest Hits  </label></div>
+      <div class="form-group"><label> <input type="checkbox" name="is_limited" <%= checked(has_case) %>> Is Limited Edtion  </label></div>
+      <div class="form-group"><label> <input type="checkbox" name="is_broken" <%= checked(has_case) %>> Is Broken  </label></div>
       <div class="form-group">
 	<button type="submit" class="btn-default btn">
 	  <i class="glyphicon glyphicon-floppy-disk"></i>

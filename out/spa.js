@@ -1721,10 +1721,15 @@ with (obj) {
 	out += "</select>";
 	return out;
     }
+
+   function checked(x) {
+     if( x==1 ) { return " checked='checked'"; }
+     return "";
+   }
 ;
 __p += '\n<div class="row">\n  <div class="col-sm-6 col-xs-12">\n    <form method="post" action="/games/' +
 __e( id ) +
-'" method="PUT">\n      <div class="form-group">\n\t<label>Name <input type="text" name="name" class="form-control" value="' +
+'" method="PUT" class="form-edit-game">\n      <div class="form-group">\n\t<label>Name <input type="text" name="name" class="form-control" value="' +
 __e( name ) +
 '"></label>\n      </div>\n      <div class="form-group">\n        <label>System ' +
 ((__t = ( systemDropdown() )) == null ? '' : __t) +
@@ -1734,7 +1739,19 @@ __e( id ) +
 __e( id ) +
 '">' +
 __e( comment ) +
-'</textarea>\n      </div>\n      <div class="form-group">\n\t<button type="submit" class="btn-default btn">\n\t  <i class="glyphicon glyphicon-floppy-disk"></i>\n\t  Save Changes\n\t</button>\n      </div>\n    </form>\n  </div>\n</div>\n';
+'</textarea>\n      </div>\n      <div class="form-group"><label> <input type="checkbox" name="is_complete" ' +
+((__t = ( checked(has_case) )) == null ? '' : __t) +
+'> Is Complete  </label></div>\n      <div class="form-group"><label> <input type="checkbox" name="has_case" ' +
+((__t = ( checked(has_case) )) == null ? '' : __t) +
+'> Has Case  </label></div>\n      <div class="form-group"><label> <input type="checkbox" name="has_docs" ' +
+((__t = ( checked(has_case) )) == null ? '' : __t) +
+'> Has Documents/Manual  </label></div>\n      <div class="form-group"><label> <input type="checkbox" name="is_ghit" ' +
+((__t = ( checked(has_case) )) == null ? '' : __t) +
+'> Is Greatest Hits  </label></div>\n      <div class="form-group"><label> <input type="checkbox" name="is_limited" ' +
+((__t = ( checked(has_case) )) == null ? '' : __t) +
+'> Is Limited Edtion  </label></div>\n      <div class="form-group"><label> <input type="checkbox" name="is_broken" ' +
+((__t = ( checked(has_case) )) == null ? '' : __t) +
+'> Is Broken  </label></div>\n      <div class="form-group">\n\t<button type="submit" class="btn-default btn">\n\t  <i class="glyphicon glyphicon-floppy-disk"></i>\n\t  Save Changes\n\t</button>\n      </div>\n    </form>\n  </div>\n</div>\n';
 
 }
 return __p
@@ -1862,10 +1879,15 @@ with (obj) {
 	out += "</select>";
 	return out;
     }
+
+   function checked(x) {
+     if( x==1 ) { return " checked='checked'"; }
+     return "";
+   }
 ;
 __p += '\n<div class="row">\n  <div class="col-sm-6 col-xs-12">\n    <form method="post" action="/games/' +
 __e( id ) +
-'" method="PUT">\n      <div class="form-group">\n\t<label>Name <input type="text" name="name" class="form-control" value="' +
+'" method="PUT" class="form-edit-game">\n      <div class="form-group">\n\t<label>Name <input type="text" name="name" class="form-control" value="' +
 __e( name ) +
 '"></label>\n      </div>\n      <div class="form-group">\n        <label>System ' +
 ((__t = ( systemDropdown() )) == null ? '' : __t) +
@@ -1875,7 +1897,19 @@ __e( id ) +
 __e( id ) +
 '">' +
 __e( comment ) +
-'</textarea>\n      </div>\n      <div class="form-group">\n\t<button type="submit" class="btn-default btn">\n\t  <i class="glyphicon glyphicon-floppy-disk"></i>\n\t  Save Changes\n\t</button>\n      </div>\n    </form>\n  </div>\n</div>\n';
+'</textarea>\n      </div>\n      <div class="form-group"><label> <input type="checkbox" name="is_complete" ' +
+((__t = ( checked(has_case) )) == null ? '' : __t) +
+'> Is Complete  </label></div>\n      <div class="form-group"><label> <input type="checkbox" name="has_case" ' +
+((__t = ( checked(has_case) )) == null ? '' : __t) +
+'> Has Case  </label></div>\n      <div class="form-group"><label> <input type="checkbox" name="has_docs" ' +
+((__t = ( checked(has_case) )) == null ? '' : __t) +
+'> Has Documents/Manual  </label></div>\n      <div class="form-group"><label> <input type="checkbox" name="is_ghit" ' +
+((__t = ( checked(has_case) )) == null ? '' : __t) +
+'> Is Greatest Hits  </label></div>\n      <div class="form-group"><label> <input type="checkbox" name="is_limited" ' +
+((__t = ( checked(has_case) )) == null ? '' : __t) +
+'> Is Limited Edtion  </label></div>\n      <div class="form-group"><label> <input type="checkbox" name="is_broken" ' +
+((__t = ( checked(has_case) )) == null ? '' : __t) +
+'> Is Broken  </label></div>\n      <div class="form-group">\n\t<button type="submit" class="btn-default btn">\n\t  <i class="glyphicon glyphicon-floppy-disk"></i>\n\t  Save Changes\n\t</button>\n      </div>\n    </form>\n  </div>\n</div>\n';
 
 }
 return __p
@@ -2108,13 +2142,22 @@ app.module('Systems', function( module, app ) {
 
     module.addInitializer( function() {
 	console.log("INIT: Systems module");
+	_sortSystems();
 	systemListView = new Views.SystemList({
 	    collection: app.data.systems
 	});
 	systemListView.render();
-	
 	$('#system-list').empty().append(systemListView.el);
     });
+
+    function _sortSystems() {
+	app.data.systems.comparator = _systemCompare;
+	app.data.systems.sort();
+    }
+
+    function _systemCompare(s) {
+	return s.get('company') + ' ' + s.get('name');
+    }
     
     var systemListView;
 
