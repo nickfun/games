@@ -1,9 +1,13 @@
 <%
-    function systemDropdown() {
+    function systemDropdown(sysid) {
 	var out = "<select name='sysid' class='form-control'>";
 	app.data.systems.each(function(system) {
+	    var selected = "";
+	    if( system.id == sysid ) {
+		selected = " selected='selected'";
+	    }
 	    var name = system.get('company') + ' ' + system.get('name');
-	    out += "<option value=" + system.get('id') + ">" + name + "</option>";
+	    out += "<option value='" + system.get('id') + "' " + selected + ">" + name + "</option>";
 	});
 	out += "</select>";
 	return out;
@@ -21,11 +25,17 @@
 	<label>Name <input type="text" name="name" class="form-control" value="<%- name %>"></label>
       </div>
       <div class="form-group">
-        <label>System <%= systemDropdown() %></label>
+        <label>System <%= systemDropdown(sysid) %></label>
       </div>
       <div class="form-group">
 	<label for="comments-game-<%- id %>">Comments</label>
 	<textarea name="comment" class="form-control" id="comments-game-<%- id %>"><%- comment %></textarea>
+      </div>
+      <div class="form-group">
+	<label>
+	  Release Date
+	  <input type="text" value="<%- release %>" name="release" class="form-control">
+	</label>
       </div>
       <div class="form-group"><label> <input type="checkbox" name="is_complete" <%= checked(is_complete) %>> Is Complete  </label></div>
       <div class="form-group"><label> <input type="checkbox" name="has_case" <%= checked(has_case) %>> Has Case  </label></div>

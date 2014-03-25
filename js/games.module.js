@@ -43,6 +43,7 @@ app.module('Games', function( module, app ) {
 		});
 		this._editView.render();
 		this.$el.after( this._editView.$el );
+		this._editView.el.scrollIntoView();
 		var that=this;
 		this.listenToOnce( this._editView, 'done', function() {
 		    that._editView.close();
@@ -81,7 +82,6 @@ app.module('Games', function( module, app ) {
 		'comment'
 	    ];
 	    // update our model with data from the form
-	    console.log("Current Value", this.model.attributes);
 	    var $form = this.$el.find('.form-edit-game');
 	    _.each(checkboxes, function(cboxName) {
 		var elname = '[name=' + cboxName + ']';
@@ -100,8 +100,8 @@ app.module('Games', function( module, app ) {
 		this.model.set(inputName, value);
 		console.log(inputName,value);
 	    }, this);
-	    console.log("new values", this.model.attributes);
 	    console.log('Save button was clicked for a Game!');
+	    this.model.save();
 	    this.trigger('done');
 	},
 	btnCancel: function(e) {

@@ -70,6 +70,7 @@ $app->get('/games/:id', function($id) use ($pdo,$app) {
 // Save data
 // ---------
 
+// Save a Game
 $app->put('/games/:id', function($id) use ($pdo, $app) {
     $id = (int) $id;
     $body = $app->request()->getBody();
@@ -104,6 +105,7 @@ id = :id";
     echo json_encode($res);
 });
 
+// Save a System
 $app->put('/systems/:id', function($id) use ($pdo, $app) {
     $id = (int) $id;
     $body = $app->request()->getBody();
