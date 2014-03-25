@@ -12,7 +12,7 @@ Also a testing ground to learn about Single Page Applications in Backbone/Marion
 
 * Features
 ** DONE Edit a System
-** TODO Edit a Game
+** DONE Edit a Game
 ** TODO Add a new System
 ** TODO Add a new Game
 ** TODO Better flow
