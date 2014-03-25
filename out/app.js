@@ -173,13 +173,14 @@ app.addInitializer( function() {
 });
 
 app.Collections = {
-	Systems: Backbone.Collection.extend({
-		url: '/systems',
-		comparator: 'release'
-	}),
-	Games: Backbone.Collection.extend({
-		url: '/games'
-	})
+    Systems: Backbone.Collection.extend({
+	url: '/systems',
+	comparator: 'release'
+    }),
+    Games: Backbone.Collection.extend({
+	url: '/games',
+	comparator: 'sysid'
+    })
 };
 
 app.on('initialize:before', function() {
@@ -194,6 +195,8 @@ function consumeBootstrap( boot ) {
     };
     app.data.systems.add( boot.systems );
     app.data.games.add( boot.games );
+    app.data.systems.sort();
+    app.data.games.sort();
 }
 
 /*
@@ -212,8 +215,9 @@ app.module('Games', function( module, app ) {
 
     module.addInitializer( function() {
 	console.log("INIT: games module");
+	var dreamcastGames = new app.Collections.Systems( app.data.games.where({sysid: "10"}) );
 	gameListView = new Views.GameList({
-	    collection: new app.Collections.Systems( app.data.games.where({sysid: "10"}) )
+	    collection: app.data.games
 	});
 	gameListView.render();
 	$('#game-list').empty().append(gameListView.el);
@@ -298,13 +302,11 @@ app.module('Games', function( module, app ) {
 		    value = "0";
 		}
 		this.model.set(cboxName, value);
-		console.log(cboxName,value);
 	    }, this);
 	    _.each(inputs, function(inputName) {
 		var elname = '[name=' + inputName + ']';
 		var value = $form.find(elname).val();
 		this.model.set(inputName, value);
-		console.log(inputName,value);
 	    }, this);
 	    console.log('Save button was clicked for a Game!');
 	    this.model.save();

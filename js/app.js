@@ -9,13 +9,14 @@ app.addInitializer( function() {
 });
 
 app.Collections = {
-	Systems: Backbone.Collection.extend({
-		url: '/systems',
-		comparator: 'release'
-	}),
-	Games: Backbone.Collection.extend({
-		url: '/games'
-	})
+    Systems: Backbone.Collection.extend({
+	url: '/systems',
+	comparator: 'release'
+    }),
+    Games: Backbone.Collection.extend({
+	url: '/games',
+	comparator: 'sysid'
+    })
 };
 
 app.on('initialize:before', function() {
@@ -30,4 +31,6 @@ function consumeBootstrap( boot ) {
     };
     app.data.systems.add( boot.systems );
     app.data.games.add( boot.games );
+    app.data.systems.sort();
+    app.data.games.sort();
 }

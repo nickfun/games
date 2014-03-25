@@ -6,8 +6,9 @@ app.module('Games', function( module, app ) {
 
     module.addInitializer( function() {
 	console.log("INIT: games module");
+	var dreamcastGames = new app.Collections.Systems( app.data.games.where({sysid: "10"}) );
 	gameListView = new Views.GameList({
-	    collection: new app.Collections.Systems( app.data.games.where({sysid: "10"}) )
+	    collection: app.data.games
 	});
 	gameListView.render();
 	$('#game-list').empty().append(gameListView.el);
@@ -92,13 +93,11 @@ app.module('Games', function( module, app ) {
 		    value = "0";
 		}
 		this.model.set(cboxName, value);
-		console.log(cboxName,value);
 	    }, this);
 	    _.each(inputs, function(inputName) {
 		var elname = '[name=' + inputName + ']';
 		var value = $form.find(elname).val();
 		this.model.set(inputName, value);
-		console.log(inputName,value);
 	    }, this);
 	    console.log('Save button was clicked for a Game!');
 	    this.model.save();
