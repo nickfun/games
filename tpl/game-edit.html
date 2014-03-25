@@ -1,6 +1,6 @@
 <%
     function systemDropdown() {
-	var out = "<select name='system' class='form-control'>";
+	var out = "<select name='sysid' class='form-control'>";
 	app.data.systems.each(function(system) {
 	    var name = system.get('company') + ' ' + system.get('name');
 	    out += "<option value=" + system.get('id') + ">" + name + "</option>";
