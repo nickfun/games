@@ -1,0 +1,22 @@
+#+TITLE: Games App Notes
+#+AUTHOR: Nick F
+#+DATE: 2014-03-25
+#OPTIONS: toc:1
+#SETQ_TODO: TODO WAITING | DONE CANCEL
+
+#STYLE: <link rel="stylesheet" type="text/css" href="http://nick.gs/orgstyle.css">
+
+* About
+A simple app to track my video game collection
+Also a testing ground to learn about Single Page Applications in Backbone/Marionette.
+
+* Features
+** DONE Edit a System
+** TODO Edit a Game
+** TODO Add a new System
+** TODO Add a new Game
+** TODO Better flow
+1. page loads: see list of systems
+2. click on system to see list of games
+3. have back/home button to return to list of games
+4. flows do not load new pages, it is all done in-app
