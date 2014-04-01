@@ -70,7 +70,28 @@ $app->get('/games/:id', function($id) use ($pdo,$app) {
 // Save data
 // ---------
 
-// Save a Game
+$app->post('/games', function() use ($pdo, $app) {
+    $body = $app->request()->getBody();
+    $rawData = json_decode($body, true);
+    $attributes = ['name','sysid','release','has_case','has_docs','is_ghit','is_limited','is_complete','is_broken','comment'];
+    $saveData = [];
+    foreach($attributes as $key) {
+      $saveData[$key] = $rawData[$key];
+    }
+    $sql = 'INSERT into games (name,sysid,`release`,has_case,has_docs,is_ghit,is_limited,is_complete,is_broken,comment) VALUES ';
+    $sql .= '( :name, :sysid , :release , :has_case , :has_docs , :is_ghit , :is_limited , :is_complete , :is_broken , :comment );';
+    $stm = $pdo->prepare($sql);
+    $result = $stm->execute($saveData);
+    if( !$result ) {
+      $app->response()->setStatus(500);
+      $res=['status'=>'bad','error'=>$stm->errorCode(),'msg'=>print_r($stm->errorInfo(),true)];
+    } else {
+      $res=['status'=>'ok','msg'=>'game created'];
+    }
+    echo json_encode($res);
+});
+
+// Save a Game that exists
 $app->put('/games/:id', function($id) use ($pdo, $app) {
     $id = (int) $id;
     $body = $app->request()->getBody();
