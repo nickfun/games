@@ -246,6 +246,7 @@ app.module('Games', function( module, app ) {
 		this._editView.close();
 		this._editView = null;
 		console.log("Close game edit view");
+		this.el.scrollIntoView();
 	    } else {
 		// Open the Edit View
 		this._editView = new Views.GameEdit({
@@ -260,6 +261,7 @@ app.module('Games', function( module, app ) {
 		    that._editView = null;
 		    that.render();
 		    console.log("game edit view closed, it is done");
+		    this.el.scrollIntoView();
 		});
 	    }
 	}
