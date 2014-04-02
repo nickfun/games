@@ -15,6 +15,45 @@
   <body>
     
     <h1>My Game Collection!</h1>
+
+    <h2>Creation Station</h2>
+    <!-- TODO: this should be a Marionette View -->
+    <div class="container-fluid">
+      <div class="row">
+
+	<div class="col-sm-6 col-xs-12">
+	  <h3>New Game</h3>
+	  <form id="new-game" role="form">
+	    <div class="form-group">
+	      <label>
+		Name: <input type="text" name="name" class="form-control">
+	      </label>
+	    </div>
+	    <div class="form-group">
+	      <label>
+		System: <select class="form-control"><option>abcxyz</option></select>
+	      </label>
+	    </div>
+	  </form>
+	</div>
+
+	<div class="col-sm-6 col-xs-12">
+	  <h3>New System</h3>
+	  <form id="new-system" role="form">
+	    <div class="form-group">
+	      <label>
+		Name: <input type="text" name="name" class="form-control">
+	      </label>
+	    </div>
+	    <div class="form-group">
+	      <label>
+		System: <select class="form-control"><option>abcxyz</option></select>
+	      </label>
+	    </div>
+	  </form>
+	</div>
+      </div>
+    </div>
     
     <h2>Systems</h2>
     <div id="system-list"></div>
