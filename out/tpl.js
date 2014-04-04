@@ -1,5 +1,15 @@
 this["TPL"] = this["TPL"] || {};
 
+this["TPL"]["game-create"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<h3>New Game</h3>\n<form id="new-game" role="form">\n  <div class="form-group">\n    <label>\n      Name: <input type="text" name="name" class="form-control">\n    </label>\n  </div>\n  <div class="form-group">\n    <label>\n      System: <select class="form-control"><option>abcxyz</option></select>\n    </label>\n  </div>\n</form>\n';
+
+}
+return __p
+};
+
 this["TPL"]["game-edit"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
@@ -100,6 +110,16 @@ __p += '\n<div class="col-sm-3">' +
 ' </div>\n<div class="col-sm-7">\n\t<button type="button" class="btn btn-default btn-sm btn-edit-game">\n\t\t<span class="glyphicon glyphicon-star"></span> Edit\n\t</button>\n\t' +
 ((__t = ( comment )) == null ? '' : __t) +
 '\n</div>\n\n';
+
+}
+return __p
+};
+
+this["TPL"]["system-create"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<h3>New System</h3>\n<form id="new-system" role="form">\n  <div class="form-group">\n    <label>\n      Name: <input type="text" name="name" class="form-control">\n    </label>\n  </div>\n  <div class="form-group">\n    <label>\n      System: <select class="form-control"><option>abcxyz</option></select>\n    </label>\n  </div>\n</form>\n';
 
 }
 return __p
