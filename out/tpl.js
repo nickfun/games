@@ -53,7 +53,7 @@ with (obj) {
      return "";
    }
 ;
-__p += '\n<div class="row">\n  <div class="col-sm-6 col-xs-12">\n    <form method="post" action="/games/' +
+__p += '\n<div class="row">\n  <div class="col-sm-4 col-xs-12 well">\n    <form method="post" action="/games/' +
 __e( id ) +
 '" method="PUT" class="form-edit-game">\n      <div class="form-group">\n\t<label>Name <input type="text" name="name" class="form-control" value="' +
 __e( name ) +

@@ -17,6 +17,7 @@
 /* The view for a Game */
 .game-row {
     padding-top: 4px;
+    border-top: 1px solid black;
 }
 
 /* Input */

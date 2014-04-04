@@ -63,7 +63,7 @@ app.module('Games', function( module, app ) {
     Views.GameEdit = Marionette.ItemView.extend({
 	template: window.TPL['game-edit'],
 	tagName: 'div',
-	className: 'container-fluid well system-edit-container',
+	className: 'container-fluid system-edit-container',
 	events: {
 	    'submit .form-edit-game': 'formSave',
 	    'click .btn-cancel': 'btnCancel'
