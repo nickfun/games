@@ -1723,9 +1723,9 @@ with (obj) {
     }
 
 ;
-__p += '\n<h3>New Game</h3>\n<form method="post" action="/games" class="form-edit-game">\n  <div class="form-group">\n    <label>Name <input type="text" name="name" class="form-control"></label>\n  </div>\n  <div class="form-group">\n    <label>System ' +
+__p += '\n<h3>New Game</h3>\n<form method="post" action="/games" class="form-create-game">\n  <div class="form-group">\n    <label>Name <input type="text" name="name" class="form-control"></label>\n  </div>\n  <div class="form-group">\n    <label>System ' +
 ((__t = ( systemDropdown() )) == null ? '' : __t) +
-'</label>\n  </div>\n  <div class="form-group">\n    <label for="comments-game-create">Comments</label>\n    <textarea name="comment" class="form-control" id="comments-game-create"></textarea>\n  </div>\n  <div class="form-group">\n    <label>\n      Release Date\n      <input type="text" name="release" class="form-control">\n    </label>\n  </div>\n  <div class="form-group"><label> <input type="checkbox" name="is_complete">Is Complete</label></div>\n  <div class="form-group"><label> <input type="checkbox" name="has_case">Has Case  </label></div>\n  <div class="form-group"><label> <input type="checkbox" name="has_docs">Has Documents/Manual</label></div>\n  <div class="form-group"><label> <input type="checkbox" name="is_ghit">Is Greatest Hits</label></div>\n  <div class="form-group"><label> <input type="checkbox" name="is_limited">Is Limited Edtion  </label></div>\n  <div class="form-group"><label> <input type="checkbox" name="is_broken"> Is Broken  </label></div>\n  <div class="form-group">\n    <button type="submit" class="btn-default btn">\n      <i class="glyphicon glyphicon-floppy-disk"></i>\n      Save Changes\n    </button>\n    <button type="button" class="btn-cancel btn-default btn">\n      <i class="glyphicon glyphicon-remove"></i>\n      Cancel\n    </button>\n  </div>\n</form>\n';
+'</label>\n  </div>\n  <div class="form-group">\n    <label for="comments-game-create">Comments</label>\n    <textarea name="comment" class="form-control" id="comments-game-create"></textarea>\n  </div>\n  <div class="form-group">\n    <label>\n      Release Date\n      <input type="text" name="release" class="form-control">\n    </label>\n  </div>\n  <div class="form-group"><label> <input type="checkbox" name="is_complete"> Is Complete</label></div>\n  <div class="form-group"><label> <input type="checkbox" name="has_case"> Has Case  </label></div>\n  <div class="form-group"><label> <input type="checkbox" name="has_docs"> Has Documents/Manual</label></div>\n  <div class="form-group"><label> <input type="checkbox" name="is_ghit"> Is Greatest Hits</label></div>\n  <div class="form-group"><label> <input type="checkbox" name="is_limited"> Is Limited Edtion  </label></div>\n  <div class="form-group"><label> <input type="checkbox" name="is_broken"> Is Broken  </label></div>\n  <div class="form-group">\n    <button type="submit" class="btn-default btn">\n      <i class="glyphicon glyphicon-floppy-disk"></i>\n      Save Changes\n    </button>\n    <button type="button" class="btn-cancel btn-default btn">\n      <i class="glyphicon glyphicon-remove"></i>\n      Cancel\n    </button>\n  </div>\n</form>\n';
 
 }
 return __p
@@ -1937,9 +1937,9 @@ with (obj) {
     }
 
 ;
-__p += '\n<h3>New Game</h3>\n<form method="post" action="/games" class="form-edit-game">\n  <div class="form-group">\n    <label>Name <input type="text" name="name" class="form-control"></label>\n  </div>\n  <div class="form-group">\n    <label>System ' +
+__p += '\n<h3>New Game</h3>\n<form method="post" action="/games" class="form-create-game">\n  <div class="form-group">\n    <label>Name <input type="text" name="name" class="form-control"></label>\n  </div>\n  <div class="form-group">\n    <label>System ' +
 ((__t = ( systemDropdown() )) == null ? '' : __t) +
-'</label>\n  </div>\n  <div class="form-group">\n    <label for="comments-game-create">Comments</label>\n    <textarea name="comment" class="form-control" id="comments-game-create"></textarea>\n  </div>\n  <div class="form-group">\n    <label>\n      Release Date\n      <input type="text" name="release" class="form-control">\n    </label>\n  </div>\n  <div class="form-group"><label> <input type="checkbox" name="is_complete">Is Complete</label></div>\n  <div class="form-group"><label> <input type="checkbox" name="has_case">Has Case  </label></div>\n  <div class="form-group"><label> <input type="checkbox" name="has_docs">Has Documents/Manual</label></div>\n  <div class="form-group"><label> <input type="checkbox" name="is_ghit">Is Greatest Hits</label></div>\n  <div class="form-group"><label> <input type="checkbox" name="is_limited">Is Limited Edtion  </label></div>\n  <div class="form-group"><label> <input type="checkbox" name="is_broken"> Is Broken  </label></div>\n  <div class="form-group">\n    <button type="submit" class="btn-default btn">\n      <i class="glyphicon glyphicon-floppy-disk"></i>\n      Save Changes\n    </button>\n    <button type="button" class="btn-cancel btn-default btn">\n      <i class="glyphicon glyphicon-remove"></i>\n      Cancel\n    </button>\n  </div>\n</form>\n';
+'</label>\n  </div>\n  <div class="form-group">\n    <label for="comments-game-create">Comments</label>\n    <textarea name="comment" class="form-control" id="comments-game-create"></textarea>\n  </div>\n  <div class="form-group">\n    <label>\n      Release Date\n      <input type="text" name="release" class="form-control">\n    </label>\n  </div>\n  <div class="form-group"><label> <input type="checkbox" name="is_complete"> Is Complete</label></div>\n  <div class="form-group"><label> <input type="checkbox" name="has_case"> Has Case  </label></div>\n  <div class="form-group"><label> <input type="checkbox" name="has_docs"> Has Documents/Manual</label></div>\n  <div class="form-group"><label> <input type="checkbox" name="is_ghit"> Is Greatest Hits</label></div>\n  <div class="form-group"><label> <input type="checkbox" name="is_limited"> Is Limited Edtion  </label></div>\n  <div class="form-group"><label> <input type="checkbox" name="is_broken"> Is Broken  </label></div>\n  <div class="form-group">\n    <button type="submit" class="btn-default btn">\n      <i class="glyphicon glyphicon-floppy-disk"></i>\n      Save Changes\n    </button>\n    <button type="button" class="btn-cancel btn-default btn">\n      <i class="glyphicon glyphicon-remove"></i>\n      Cancel\n    </button>\n  </div>\n</form>\n';
 
 }
 return __p
@@ -2141,14 +2141,44 @@ app.addInitializer( function() {
     console.log("APP has started");
 });
 
+app.Models = {
+    Game: Backbone.Model.extend({
+	defaults: {
+	    name: "--",
+	    release: "0000-00-00",
+	    sysid: -1,
+	    comment: "",
+	    has_case: 0,
+	    has_docs: 0,
+	    is_complete: 0,
+	    is_ghit: 0,
+	    is_broken: 0,
+	    is_limited: 0
+	},
+	urlRoot: '/games'
+    }),
+    System: Backbone.Model.extend({
+	defaults: {
+	    name: "--",
+	    company: "",
+	    comments: "",
+	    num: 0,
+	    release: "0000-00-00"
+	},
+	urlRoot: '/systems'
+    })
+};
+
 app.Collections = {
     Systems: Backbone.Collection.extend({
 	url: '/systems',
-	comparator: 'release'
+	comparator: 'release',
+	model: app.Models.System
     }),
     Games: Backbone.Collection.extend({
 	url: '/games',
-	comparator: 'sysid'
+	comparator: 'sysid',
+	model: app.Models.Game
     })
 };
 
@@ -2219,6 +2249,41 @@ app.module('Create', function( module, app ) {
 	formSubmit: function(e) {
 	    e.preventDefault();
 	    console.log("Create a new game!!!!!!");
+	    var checkboxes = [
+		'is_complete',
+		'has_case',
+		'has_docs',
+		'is_ghit',
+		'is_limited',
+		'is_broken'
+	    ];
+	    var inputs = [
+		'name',
+		'sysid',
+		'release',
+		'comment'
+	    ];
+	    // set model with data from the form
+	    var model = new app.Models.Game();
+	    var $form = this.$el.find('.form-create-game');
+	    _.each(checkboxes, function(cboxName) {
+		var elname = '[name=' + cboxName + ']';
+		var value;
+		if( $form.find(elname).prop('checked') ) {
+		    value = "1";
+		} else {
+		    value = "0";
+		}
+		model.set(cboxName, value);
+	    }, this);
+	    _.each(inputs, function(inputName) {
+		var elname = '[name=' + inputName + ']';
+		var value = $form.find(elname).val();
+		model.set(inputName, value);
+	    }, this);
+	    console.log('Save button was clicked for a Game!');
+	    model.save();
+	    this.trigger('done');
 	}
     });
 

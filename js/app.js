@@ -8,14 +8,44 @@ app.addInitializer( function() {
     console.log("APP has started");
 });
 
+app.Models = {
+    Game: Backbone.Model.extend({
+	defaults: {
+	    name: "--",
+	    release: "0000-00-00",
+	    sysid: -1,
+	    comment: "",
+	    has_case: 0,
+	    has_docs: 0,
+	    is_complete: 0,
+	    is_ghit: 0,
+	    is_broken: 0,
+	    is_limited: 0
+	},
+	urlRoot: '/games'
+    }),
+    System: Backbone.Model.extend({
+	defaults: {
+	    name: "--",
+	    company: "",
+	    comments: "",
+	    num: 0,
+	    release: "0000-00-00"
+	},
+	urlRoot: '/systems'
+    })
+};
+
 app.Collections = {
     Systems: Backbone.Collection.extend({
 	url: '/systems',
-	comparator: 'release'
+	comparator: 'release',
+	model: app.Models.System
     }),
     Games: Backbone.Collection.extend({
 	url: '/games',
-	comparator: 'sysid'
+	comparator: 'sysid',
+	model: app.Models.Game
     })
 };
 
