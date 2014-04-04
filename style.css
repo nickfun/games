@@ -10,6 +10,10 @@
     padding-top: 4px;
 }
 
+.game-name {
+    background-color: #eee;
+}
+
 /* The view for a Game */
 .game-row {
     padding-top: 4px;

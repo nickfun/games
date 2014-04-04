@@ -82,11 +82,14 @@ $app->post('/games', function() use ($pdo, $app) {
     $sql .= '( :name, :sysid , :release , :has_case , :has_docs , :is_ghit , :is_limited , :is_complete , :is_broken , :comment );';
     $stm = $pdo->prepare($sql);
     $result = $stm->execute($saveData);
+    $id = 0;
     if( !$result ) {
       $app->response()->setStatus(500);
       $res=['status'=>'bad','error'=>$stm->errorCode(),'msg'=>print_r($stm->errorInfo(),true)];
     } else {
-      $res=['status'=>'ok','msg'=>'game created'];
+      //$res=['status'=>'ok','msg'=>'game created'];
+      $saveData['id'] = $pdo->lastInsertId();
+      $res = $saveData;
     }
     echo json_encode($res);
 });

@@ -39,7 +39,9 @@ app.Models = {
 app.Collections = {
     Systems: Backbone.Collection.extend({
 	url: '/systems',
-	comparator: 'release',
+	comparator: function(s) {
+	    return s.get('company') + s.get('name');
+	},
 	model: app.Models.System
     }),
     Games: Backbone.Collection.extend({

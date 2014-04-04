@@ -9,6 +9,7 @@ with (obj) {
 
     function systemDropdown() {
 	var out = "<select name='sysid' class='form-control'>";
+	app.data.systems.sort();
 	app.data.systems.each(function(system) {
             var name = system.get('company') + ' ' + system.get('name');
 	    out += "<option value='" + system.get('id') + "'>" + name + "</option>";
@@ -117,12 +118,12 @@ function showDate( release ) {
 }
 
 ;
-__p += '\n<div class="col-sm-3">' +
+__p += '\n<div class="col-sm-3 game-name">' +
 ((__t = ( name )) == null ? '' : __t) +
 '</div>\n<div class="col-sm-2"> ' +
-((__t = ( extras(obj) )) == null ? '' : __t) +
-' ' +
 ((__t = ( showDate(release) )) == null ? '' : __t) +
+' <br>' +
+((__t = ( extras(obj) )) == null ? '' : __t) +
 ' </div>\n<div class="col-sm-7">\n\t<button type="button" class="btn btn-default btn-sm btn-edit-game">\n\t\t<span class="glyphicon glyphicon-star"></span> Edit\n\t</button>\n\t' +
 ((__t = ( comment )) == null ? '' : __t) +
 '\n</div>\n\n';

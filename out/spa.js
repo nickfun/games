@@ -1714,6 +1714,7 @@ with (obj) {
 
     function systemDropdown() {
 	var out = "<select name='sysid' class='form-control'>";
+	app.data.systems.sort();
 	app.data.systems.each(function(system) {
             var name = system.get('company') + ' ' + system.get('name');
 	    out += "<option value='" + system.get('id') + "'>" + name + "</option>";
@@ -1822,12 +1823,12 @@ function showDate( release ) {
 }
 
 ;
-__p += '\n<div class="col-sm-3">' +
+__p += '\n<div class="col-sm-3 game-name">' +
 ((__t = ( name )) == null ? '' : __t) +
 '</div>\n<div class="col-sm-2"> ' +
-((__t = ( extras(obj) )) == null ? '' : __t) +
-' ' +
 ((__t = ( showDate(release) )) == null ? '' : __t) +
+' <br>' +
+((__t = ( extras(obj) )) == null ? '' : __t) +
 ' </div>\n<div class="col-sm-7">\n\t<button type="button" class="btn btn-default btn-sm btn-edit-game">\n\t\t<span class="glyphicon glyphicon-star"></span> Edit\n\t</button>\n\t' +
 ((__t = ( comment )) == null ? '' : __t) +
 '\n</div>\n\n';
@@ -1928,6 +1929,7 @@ with (obj) {
 
     function systemDropdown() {
 	var out = "<select name='sysid' class='form-control'>";
+	app.data.systems.sort();
 	app.data.systems.each(function(system) {
             var name = system.get('company') + ' ' + system.get('name');
 	    out += "<option value='" + system.get('id') + "'>" + name + "</option>";
@@ -2036,12 +2038,12 @@ function showDate( release ) {
 }
 
 ;
-__p += '\n<div class="col-sm-3">' +
+__p += '\n<div class="col-sm-3 game-name">' +
 ((__t = ( name )) == null ? '' : __t) +
 '</div>\n<div class="col-sm-2"> ' +
-((__t = ( extras(obj) )) == null ? '' : __t) +
-' ' +
 ((__t = ( showDate(release) )) == null ? '' : __t) +
+' <br>' +
+((__t = ( extras(obj) )) == null ? '' : __t) +
 ' </div>\n<div class="col-sm-7">\n\t<button type="button" class="btn btn-default btn-sm btn-edit-game">\n\t\t<span class="glyphicon glyphicon-star"></span> Edit\n\t</button>\n\t' +
 ((__t = ( comment )) == null ? '' : __t) +
 '\n</div>\n\n';
@@ -2172,7 +2174,9 @@ app.Models = {
 app.Collections = {
     Systems: Backbone.Collection.extend({
 	url: '/systems',
-	comparator: 'release',
+	comparator: function(s) {
+	    return s.get('company') + s.get('name');
+	},
 	model: app.Models.System
     }),
     Games: Backbone.Collection.extend({
@@ -2281,9 +2285,15 @@ app.module('Create', function( module, app ) {
 		var value = $form.find(elname).val();
 		model.set(inputName, value);
 	    }, this);
-	    console.log('Save button was clicked for a Game!');
-	    model.save();
-	    this.trigger('done');
+	    //console.log("Save this:", model.attributes);
+	    var thisview = this;
+	    model.save({}, {
+		success: function(model, response, options) {
+		    app.data.games.add( model );
+		    thisview.render(); // or clear?
+		    console.log("Game was saved to the server", model.get('name'));
+		}
+	    });
 	}
     });
 

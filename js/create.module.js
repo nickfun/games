@@ -73,9 +73,15 @@ app.module('Create', function( module, app ) {
 		var value = $form.find(elname).val();
 		model.set(inputName, value);
 	    }, this);
-	    console.log('Save button was clicked for a Game!');
-	    model.save();
-	    this.trigger('done');
+	    //console.log("Save this:", model.attributes);
+	    var thisview = this;
+	    model.save({}, {
+		success: function(model, response, options) {
+		    app.data.games.add( model );
+		    thisview.render(); // or clear?
+		    console.log("Game was saved to the server", model.get('name'));
+		}
+	    });
 	}
     });
 

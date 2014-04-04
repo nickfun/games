@@ -22,6 +22,7 @@ Also a testing ground to learn about Single Page Applications in Backbone/Marion
 3. have back/home button to return to list of games
 4. flows do not load new pages, it is all done in-app
 
+** TODO delete a game
 * Misc
 ** TODO System to share template functions
 - Dropdown list of companies
