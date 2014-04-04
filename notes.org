@@ -21,3 +21,8 @@ Also a testing ground to learn about Single Page Applications in Backbone/Marion
 2. click on system to see list of games
 3. have back/home button to return to list of games
 4. flows do not load new pages, it is all done in-app
+
+* Misc
+** TODO System to share template functions
+- Dropdown list of companies
+- Dropdown list of systems

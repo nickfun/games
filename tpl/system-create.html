@@ -1,3 +1,14 @@
+<%
+    function systemDropdown() {
+	var out ="<select name='sysid' class='form-control'>";
+	app.data.systems.each(function(system) {
+	    var name = system.get('company') + ' ' + system.get('name');
+	    out += "<option value='" + system.get('id') + "'>" + name + "</option>";
+	});
+	out += '</select>';
+	return out;
+    }
+%>
 <h3>New System</h3>
 <form id="new-system" role="form">
   <div class="form-group">
@@ -7,7 +18,7 @@
   </div>
   <div class="form-group">
     <label>
-      System: <select class="form-control"><option>abcxyz</option></select>
+      System: <%= systemDropdown() %>
     </label>
   </div>
 </form>

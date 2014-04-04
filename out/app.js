@@ -2,9 +2,24 @@ this["TPL"] = this["TPL"] || {};
 
 this["TPL"]["game-create"] = function(obj) {
 obj || (obj = {});
-var __t, __p = '', __e = _.escape;
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
 with (obj) {
-__p += '<h3>New Game</h3>\n<form id="new-game" role="form">\n  <div class="form-group">\n    <label>\n      Name: <input type="text" name="name" class="form-control">\n    </label>\n  </div>\n  <div class="form-group">\n    <label>\n      System: <select class="form-control"><option>abcxyz</option></select>\n    </label>\n  </div>\n</form>\n';
+
+
+    function systemDropdown() {
+	var out ="<select name='sysid' class='form-control'>";
+	app.data.systems.each(function(system) {
+	    var name = system.get('company') + ' ' + system.get('name');
+	    out += "<option value='" + system.get('id') + "'>" + name + "</option>";
+	});
+	out += '</select>';
+	return out;
+    }
+;
+__p += '\n<h3>New Game</h3>\n<form id="new-game" role="form" method="post" action="/games">\n  <div class="form-group">\n    <label>\n      Name: <input type="text" name="name" class="form-control">\n    </label>\n  </div>\n  <div class="form-group">\n    <label>\n    System: ' +
+((__t = ( systemDropdown() )) == null ? '' : __t) +
+'\n    </label>\n  </div>\n  <div class="form-group">\n    <label>Comments</label>\n    <textarea name="comment" class="form-control"></textarea>\n  </div>\n  <div class="form-group">\n    <button type="submit" class="btn btn-default">\n      <i class="glyphicon glyphicon-floppy-disk"></i> Submit\n    </button>\n  </div>\n</form>\n';
 
 }
 return __p
@@ -117,9 +132,24 @@ return __p
 
 this["TPL"]["system-create"] = function(obj) {
 obj || (obj = {});
-var __t, __p = '', __e = _.escape;
+var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
+function print() { __p += __j.call(arguments, '') }
 with (obj) {
-__p += '<h3>New System</h3>\n<form id="new-system" role="form">\n  <div class="form-group">\n    <label>\n      Name: <input type="text" name="name" class="form-control">\n    </label>\n  </div>\n  <div class="form-group">\n    <label>\n      System: <select class="form-control"><option>abcxyz</option></select>\n    </label>\n  </div>\n</form>\n';
+
+
+    function systemDropdown() {
+	var out ="<select name='sysid' class='form-control'>";
+	app.data.systems.each(function(system) {
+	    var name = system.get('company') + ' ' + system.get('name');
+	    out += "<option value='" + system.get('id') + "'>" + name + "</option>";
+	});
+	out += '</select>';
+	return out;
+    }
+;
+__p += '\n<h3>New System</h3>\n<form id="new-system" role="form">\n  <div class="form-group">\n    <label>\n      Name: <input type="text" name="name" class="form-control">\n    </label>\n  </div>\n  <div class="form-group">\n    <label>\n      System: ' +
+((__t = ( systemDropdown() )) == null ? '' : __t) +
+'\n    </label>\n  </div>\n</form>\n';
 
 }
 return __p
@@ -226,6 +256,61 @@ function consumeBootstrap( boot ) {
 app.config = {
     dateFormat: 'MMMM Do, YYYY'
 };
+
+/**
+ * Creation Module
+ */
+
+app.module('Create', function( module, app ) {
+    
+    module.addInitializer( function() {
+	console.log("INIT: Create module");
+	_drawForms();
+    });
+
+    // private vars
+    // ------------
+    var oGameView;
+    var oSystemView;
+
+    // private functions
+    // -----------------
+
+    function _drawForms() {
+	console.log("drawing the create forms!");
+	oGameView = new oViews.CreateGame();
+	oGameView.render();
+	oSystemView = new oViews.CreateSystem();
+	oSystemView.render();
+	$('#create-forms-container').append(oGameView.el).append(oSystemView.el);
+    }
+
+    // Views
+    // -----
+    var oViews = {};
+    
+    // Create a Game
+    oViews.CreateGame = Marionette.ItemView.extend({
+	tagName: 'div',
+	className: 'col-sm-6 col-xs-12',
+	template: window.TPL['game-create'],
+	events: {
+	    'submit form': 'formSubmit'
+	},
+	formSubmit: function(e) {
+	    e.preventDefault();
+	    console.log("Create a new game!!!!!!");
+	}
+    });
+
+    // Create a System
+    oViews.CreateSystem = Marionette.ItemView.extend({
+	tagName: 'div',
+	className: 'col-sm-6 col-xs-12',
+	template: window.TPL['system-create']
+    });
+
+});
 
 /**
  * Games Module
