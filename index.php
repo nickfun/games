@@ -23,6 +23,39 @@ $resp['Content-Type'] = 'application/json';
 
 $model = new Model($pdo);
 
+// Utility functions
+// =================
+
+function formatDate($date) {
+  return date('Y-m-d', strtotime($date));
+}
+
+function validateGame($game) {
+  if( strlen($game['name']) < 2 ) {
+    return false;
+  }
+  if( !is_numeric($game['sysid']) ) {
+    return false;
+  }
+  return true;
+}
+
+function validateSystem($system) {
+  if( strlen($system['name']) < 2 ) {
+    return false;
+  }
+  if( strlen($system['company']) < 2 ) {
+    return false;
+  }
+  return true;
+}
+
+function badInput($app) {
+  $resp = $app->response();
+  $resp->setStatus(400);
+  echo json_encode(array('status'=>'bad', msg=>'bad input'));
+}
+
 
 // Routes
 // ======
@@ -116,6 +149,9 @@ id = :id";
     $saveData = array();
     foreach( $attributes as $i ) {
         $saveData[$i] = $row[$i];
+    }
+    if( !validGame($saveData) ) {
+      return badInput($app);
     }
     $stm = $pdo->prepare($sql);
     $result = $stm->execute($saveData);
