@@ -418,6 +418,13 @@ app.module('Games', function( module, app ) {
 	events: {
 	    'click .btn-edit-game': 'clickEditButton'
 	},
+	modelEvents: {
+		redraw: 'redrawRequest'
+	},
+	redrawRequest: function() {
+		console.log("-- the model wants to be re-drawn. I will re-render");
+		this.render();
+	},
 	clickEditButton: function(e) {
 	    e.preventDefault();
 	    if( this._editView ) {
@@ -457,6 +464,7 @@ app.module('Games', function( module, app ) {
 	    'click .btn-cancel': 'btnCancel'
 	},
 	formSave: function(e) {
+		var originalData = _.clone(this.model.attributes);
 	    e.preventDefault();
 	    var checkboxes = [
 		'is_complete',
@@ -490,7 +498,19 @@ app.module('Games', function( module, app ) {
 		this.model.set(inputName, value);
 	    }, this);
 	    console.log('Save button was clicked for a Game!');
-	    this.model.save();
+	    var that = this;
+	    
+	    this.model.save({}, {
+	    	success: function() {
+	    		console.log("Game was saved!");
+	    	},
+	    	error: function() {
+	    		console.warn("Game was not saved!!!!!");
+	    		console.warn("Resetting data!!!!");
+	    		that.model.set(originalData);
+	    		that.model.trigger('redraw');
+	    	}
+	    });
 	    this.trigger('done');
 	},
 	btnCancel: function(e) {

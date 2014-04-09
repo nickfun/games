@@ -53,7 +53,7 @@ function validateSystem($system) {
 function badInput($app) {
   $resp = $app->response();
   $resp->setStatus(400);
-  echo json_encode(array('status'=>'bad', msg=>'bad input'));
+  echo json_encode(array('status'=>'bad', 'msg'=>'bad input'));
 }
 
 
@@ -103,6 +103,7 @@ $app->get('/games/:id', function($id) use ($pdo,$app) {
 // Save data
 // ---------
 
+// save a new game
 $app->post('/games', function() use ($pdo, $app) {
     $body = $app->request()->getBody();
     $rawData = json_decode($body, true);
@@ -150,7 +151,7 @@ id = :id";
     foreach( $attributes as $i ) {
         $saveData[$i] = $row[$i];
     }
-    if( !validGame($saveData) ) {
+    if( !validateGame($saveData) ) {
       return badInput($app);
     }
     $stm = $pdo->prepare($sql);
