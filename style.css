@@ -2,6 +2,14 @@
  * Style for the game app
  */
 
+.hidden {
+    display: none;
+}
+
+.creation-container {
+    margin-top: 10px;
+}
+
 /* the view for a System */
 .system-row {
     padding-top: 4px;

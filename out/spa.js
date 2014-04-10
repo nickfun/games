@@ -2220,6 +2220,15 @@ app.module('Create', function( module, app ) {
 	console.log("INIT: Create module");
 	_drawForms();
     });
+    
+    module.addInitializer( function() {
+        /**
+         * Caution! This is a hack, think of a better way to do this :)
+         */
+        $('.btn-toggle-creation-view').click(function() {
+            $('.creation-container').toggleClass('hidden');
+        });
+    })
 
     // private vars
     // ------------
