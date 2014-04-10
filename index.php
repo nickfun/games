@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once 'vendor/autoload.php';
 require_once 'model.php';
@@ -27,35 +27,34 @@ $model = new Model($pdo);
 // =================
 
 function formatDate($date) {
-  return date('Y-m-d', strtotime($date));
+    return date('Y-m-d', strtotime($date));
 }
 
 function validateGame($game) {
-  if( strlen($game['name']) < 2 ) {
-    return false;
-  }
-  if( !is_numeric($game['sysid']) ) {
-    return false;
-  }
-  return true;
+    if (strlen($game['name']) < 2) {
+        return false;
+    }
+    if (!is_numeric($game['sysid'])) {
+        return false;
+    }
+    return true;
 }
 
 function validateSystem($system) {
-  if( strlen($system['name']) < 2 ) {
-    return false;
-  }
-  if( strlen($system['company']) < 2 ) {
-    return false;
-  }
-  return true;
+    if (strlen($system['name']) < 2) {
+        return false;
+    }
+    if (strlen($system['company']) < 2) {
+        return false;
+    }
+    return true;
 }
 
 function badInput($app) {
-  $resp = $app->response();
-  $resp->setStatus(400);
-  echo json_encode(array('status'=>'bad', 'msg'=>'bad input'));
+    $resp = $app->response();
+    $resp->setStatus(400);
+    echo json_encode(array('status' => 'bad', 'msg' => 'bad input'));
 }
-
 
 // Routes
 // ======
@@ -69,7 +68,7 @@ $app->get('/', function() use ($pdo, $app, $model) {
     $resp['Content-Type'] = 'text/html';
     $bootstrap_games = json_encode($model->getAllGames());
     $bootstrap_systems = json_encode($model->getAllSystems());
-    include('front.php');
+    include('layout.php');
 });
 
 // Reading data
@@ -91,9 +90,9 @@ $app->get('/systems/:id', function($id) use ($pdo, $app) {
 $app->get('/games', function() use ($model, $app) {
     $res = $model->getAllGames();
     echo json_encode($res);
-  });
+});
 
-$app->get('/games/:id', function($id) use ($model,$app) {
+$app->get('/games/:id', function($id) use ($model, $app) {
     $id = (int) $id;
     $data = $model->getGame($id);
     echo json_encode($data);
@@ -101,28 +100,27 @@ $app->get('/games/:id', function($id) use ($model,$app) {
 
 // Save data
 // ---------
-
 // save a new game
 $app->post('/games', function() use ($pdo, $app) {
     $body = $app->request()->getBody();
     $rawData = json_decode($body, true);
-    $attributes = ['name','sysid','release','has_case','has_docs','is_ghit','is_limited','is_complete','is_broken','comment'];
+    $attributes = ['name', 'sysid', 'release', 'has_case', 'has_docs', 'is_ghit', 'is_limited', 'is_complete', 'is_broken', 'comment'];
     $saveData = [];
-    foreach($attributes as $key) {
-      $saveData[$key] = $rawData[$key];
+    foreach ($attributes as $key) {
+        $saveData[$key] = $rawData[$key];
     }
     $sql = 'INSERT into games (name,sysid,`release`,has_case,has_docs,is_ghit,is_limited,is_complete,is_broken,comment) VALUES ';
     $sql .= '( :name, :sysid , :release , :has_case , :has_docs , :is_ghit , :is_limited , :is_complete , :is_broken , :comment );';
     $stm = $pdo->prepare($sql);
     $result = $stm->execute($saveData);
     $id = 0;
-    if( !$result ) {
-      $app->response()->setStatus(500);
-      $res=['status'=>'bad','error'=>$stm->errorCode(),'msg'=>print_r($stm->errorInfo(),true)];
+    if (!$result) {
+        $app->response()->setStatus(500);
+        $res = ['status' => 'bad', 'error' => $stm->errorCode(), 'msg' => print_r($stm->errorInfo(), true)];
     } else {
-      //$res=['status'=>'ok','msg'=>'game created'];
-      $saveData['id'] = $pdo->lastInsertId();
-      $res = $saveData;
+        //$res=['status'=>'ok','msg'=>'game created'];
+        $saveData['id'] = $pdo->lastInsertId();
+        $res = $saveData;
     }
     echo json_encode($res);
 });
@@ -132,7 +130,7 @@ $app->put('/games/:id', function($id) use ($pdo, $app) {
     $id = (int) $id;
     $body = $app->request()->getBody();
     $row = json_decode($body, true);
-    $attributes = ['name','sysid','release','has_case','has_docs','is_ghit','is_limited','is_complete','is_broken','comment','id'];
+    $attributes = ['name', 'sysid', 'release', 'has_case', 'has_docs', 'is_ghit', 'is_limited', 'is_complete', 'is_broken', 'comment', 'id'];
     $sql = "UPDATE games SET
 name = :name,
 sysid = :sysid,
@@ -147,20 +145,20 @@ comment = :comment
 WHERE
 id = :id";
     $saveData = array();
-    foreach( $attributes as $i ) {
+    foreach ($attributes as $i) {
         $saveData[$i] = $row[$i];
     }
-    if( !validateGame($saveData) ) {
-      return badInput($app);
+    if (!validateGame($saveData)) {
+        return badInput($app);
     }
     $stm = $pdo->prepare($sql);
     $result = $stm->execute($saveData);
-    if( !$result ) {
-      // error
-      $app->response()->setStatus(500);
-      $res = ['status'=>'bad','error'=>$stm->errorCode(),'msg'=>print_r($stm->errorInfo(),true)];
+    if (!$result) {
+        // error
+        $app->response()->setStatus(500);
+        $res = ['status' => 'bad', 'error' => $stm->errorCode(), 'msg' => print_r($stm->errorInfo(), true)];
     } else {
-      $res = ['status'=>'ok','msg'=>'game saved'];
+        $res = ['status' => 'ok', 'msg' => 'game saved'];
     }
     echo json_encode($res);
 });
@@ -178,31 +176,30 @@ comments=:comments,
 num=:num 
 WHERE 
 id=:id";
-    $copylist = ['name','company','release','comments','num','id'];
+    $copylist = ['name', 'company', 'release', 'comments', 'num', 'id'];
     $sqldata = array();
-    foreach( $copylist as $key ) {
-	$sqldata[$key] = $row[$key];
+    foreach ($copylist as $key) {
+        $sqldata[$key] = $row[$key];
     }
     $stm = $pdo->prepare($sql);
     try {
-	$result = $stm->execute($sqldata);
-    } catch( Exception  $e ) {
-	echo "EXCEPTION " . $e->getMessage();
+        $result = $stm->execute($sqldata);
+    } catch (Exception $e) {
+        echo "EXCEPTION " . $e->getMessage();
     }
-    if( !$result ) {
-      // error
-      $app->response()->setStatus(500);
-      $res = array(
-          'status' => 'bad',
-	  'error' => $stm->errorCode() . " MSG:" . print_r($stm->errorInfo(), true)
-      );
-      echo json_encode($res);
-			     
+    if (!$result) {
+        // error
+        $app->response()->setStatus(500);
+        $res = array(
+            'status' => 'bad',
+            'error' => $stm->errorCode() . " MSG:" . print_r($stm->errorInfo(), true)
+        );
+        echo json_encode($res);
     } else {
-      // success
-      echo json_encode(['status'=>'ok']);
+        // success
+        echo json_encode(['status' => 'ok']);
     }
-  });
+});
 
 // Done defining routes
 // --------------------
