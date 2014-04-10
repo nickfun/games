@@ -14,7 +14,7 @@ class Model {
 	
 	public function getSystem($id) {
 		$id = (int) $id;
-		$stm = $pdo->prepare('select * from systems where id=:id');
+		$stm = $this->pdo->prepare('select * from systems where id=:id');
 		$stm->execute([':id' => $id]);
 		return $stm->fetchAll();
 	}
@@ -26,7 +26,7 @@ class Model {
 	
 	public function getGame($id) {
 		$id = (int) $id;
-		$stm = $pdo->prepare('select * from games where id=:id');
+		$stm = $this->pdo->prepare('select * from games where id=:id');
 		$stm->execute(['id' => $id]);
 		return $stm->fetchAll();
 	}

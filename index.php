@@ -75,9 +75,9 @@ $app->get('/', function() use ($pdo, $app, $model) {
 // Reading data
 // ------------
 
-$app->get('/systems', function() use ($pdo, $app) {
-    $res = $pdo->query('select * from systems');
-    echo json_encode($res->fetchAll());
+$app->get('/systems', function() use ($model, $app) {
+    $res = $model->getAllSystems();
+    echo json_encode($res);
 });
 
 $app->get('/systems/:id', function($id) use ($pdo, $app) {
@@ -88,17 +88,16 @@ $app->get('/systems/:id', function($id) use ($pdo, $app) {
     echo json_encode($system);
 });
 
-$app->get('/games', function() use ($pdo, $app) {
-    $res = $pdo->query('select * from games');
-    echo json_encode($res->fetchAll());
+$app->get('/games', function() use ($model, $app) {
+    $res = $model->getAllGames();
+    echo json_encode($res);
   });
 
-$app->get('/games/:id', function($id) use ($pdo,$app) {
+$app->get('/games/:id', function($id) use ($model,$app) {
     $id = (int) $id;
-    $stm = $pdo->prepare('select * from games where id=:id');
-    $stm->execute(['id' => $id]);
-    echo json_encode($stm->fetchAll());
-  });
+    $data = $model->getGame($id);
+    echo json_encode($data);
+});
 
 // Save data
 // ---------
