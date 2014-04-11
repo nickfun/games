@@ -6,7 +6,7 @@ require_once 'model.php';
 // Auth! lol
 $user = $_SERVER['PHP_AUTH_USER'];
 $pass = $_SERVER['PHP_AUTH_PW'];
-if( !($user == "admin" && $pass == "password1") ) {
+if (!($user == "admin" && $pass == "password1")) {
     header('WWW-Authenticate: Basic realm="My Realm"');
     header('HTTP/1.0 401 Unauthorized');
     die("You are not allowed to access this web resource");
@@ -67,11 +67,10 @@ function badInput($app) {
 
 // Routes
 // ======
-
 // Serve the front page
 // --------------------
 
-$app->get('/', function() use ($pdo, $app, $model) {
+$app->get('/', function() use ($app, $model) {
     // only this route is HTML
     $resp = $app->response();
     $resp['Content-Type'] = 'text/html';
@@ -88,11 +87,9 @@ $app->get('/systems', function() use ($model, $app) {
     echo json_encode($res);
 });
 
-$app->get('/systems/:id', function($id) use ($pdo, $app) {
+$app->get('/systems/:id', function($id) use ($model, $app) {
     $id = (int) $id;
-    $stm = $pdo->prepare('select * from systems where id=:id');
-    $stm->execute([':id' => $id]);
-    $system = $stm->fetchAll();
+    $system = $model->getSystem($id);
     echo json_encode($system);
 });
 
