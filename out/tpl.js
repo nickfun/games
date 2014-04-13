@@ -7,21 +7,21 @@ function print() { __p += __j.call(arguments, '') }
 with (obj) {
 
 
-    function systemDropdown() {
-	var out = "<select name='sysid' class='form-control'>";
-	app.data.systems.sort();
-	app.data.systems.each(function(system) {
-            var name = system.get('company') + ' ' + system.get('name');
-	    out += "<option value='" + system.get('id') + "'>" + name + "</option>";
-	});
-	out += "</select>";
-	return out;
-    }
+function systemDropdown() {
+var out = "<select name='sysid' class='form-control'>";
+    app.data.systems.sort();
+    app.data.systems.each(function(system) {
+    var name = system.get('company') + ' ' + system.get('name');
+    out += "<option value='" + system.get('id') + "'>" + name + "</option>";
+    });
+    out += "</select>";
+return out;
+}
 
 ;
-__p += '\n<h3>New Game</h3>\n<form method="post" action="/games" class="form-create-game">\n  <div class="form-group">\n    <label>Name <input type="text" name="name" class="form-control"></label>\n  </div>\n  <div class="form-group">\n    <label>System ' +
+__p += '\n<h3>New Game</h3>\n<form method="post" action="/games" class="form-create-game">\n    <div class="form-group">\n        <label>Name <input type="text" name="name" class="form-control"></label>\n    </div>\n    <div class="form-group">\n        <label>System ' +
 ((__t = ( systemDropdown() )) == null ? '' : __t) +
-'</label>\n  </div>\n  <div class="form-group">\n    <label for="comments-game-create">Comments</label>\n    <textarea name="comment" class="form-control" id="comments-game-create"></textarea>\n  </div>\n  <div class="form-group">\n    <label>\n      Release Date\n      <input type="text" name="release" class="form-control">\n    </label>\n  </div>\n  <div class="form-group"><label> <input type="checkbox" name="is_complete"> Is Complete</label></div>\n  <div class="form-group"><label> <input type="checkbox" name="has_case"> Has Case  </label></div>\n  <div class="form-group"><label> <input type="checkbox" name="has_docs"> Has Documents/Manual</label></div>\n  <div class="form-group"><label> <input type="checkbox" name="is_ghit"> Is Greatest Hits</label></div>\n  <div class="form-group"><label> <input type="checkbox" name="is_limited"> Is Limited Edtion  </label></div>\n  <div class="form-group"><label> <input type="checkbox" name="is_broken"> Is Broken  </label></div>\n  <div class="form-group">\n    <button type="submit" class="btn-default btn">\n      <i class="glyphicon glyphicon-floppy-disk"></i>\n      Save Changes\n    </button>\n    <button type="button" class="btn-cancel btn-default btn">\n      <i class="glyphicon glyphicon-remove"></i>\n      Cancel\n    </button>\n  </div>\n</form>\n';
+'</label>\n    </div>\n    <div class="form-group">\n        <label for="comments-game-create">Comments</label>\n        <textarea name="comment" class="form-control" id="comments-game-create"></textarea>\n    </div>\n    <div class="form-group">\n        <label>\n            Release Date\n            <input type="text" name="release" class="form-control">\n        </label>\n    </div>\n    <div class="form-group"><label> <input type="checkbox" name="is_complete"> Is Complete</label></div>\n    <div class="form-group"><label> <input type="checkbox" name="has_case"> Has Case  </label></div>\n    <div class="form-group"><label> <input type="checkbox" name="has_docs"> Has Documents/Manual</label></div>\n    <div class="form-group"><label> <input type="checkbox" name="is_ghit"> Is Greatest Hits</label></div>\n    <div class="form-group"><label> <input type="checkbox" name="is_limited"> Is Limited Edition  </label></div>\n    <div class="form-group"><label> <input type="checkbox" name="is_broken"> Is Broken  </label></div>\n    <div class="form-group">\n        <button type="submit" class="btn-default btn">\n            <i class="glyphicon glyphicon-floppy-disk"></i>\n            Save Changes\n        </button>\n        <button type="button" class="btn-reset btn-default btn">\n            <i class="glyphicon glyphicon-remove"></i>\n            Cancel\n        </button>\n    </div>\n</form>\n';
 
 }
 return __p
@@ -139,19 +139,19 @@ function print() { __p += __j.call(arguments, '') }
 with (obj) {
 
 
-    function companyDropdown() {
-        var companies = _.unique(app.data.systems.pluck('company')).sort();
-	var out ="<select name='company' class='form-control'>";
-	_.each(companies, function(company) {
-	    out += "<option value='" + company + "'>" + company + "</option>";
-	});
-	out += '</select>';
-	return out;
-    }
+function companyDropdown() {
+var companies = _.unique(app.data.systems.pluck('company')).sort();
+var out ="<select name='company' class='form-control'>";
+    _.each(companies, function(company) {
+    out += "<option value='" + company + "'>" + company + "</option>";
+    });
+    out += '</select>';
+return out;
+}
 ;
-__p += '\n<h3>New System</h3>\n\n<div class="row">\n  <div class="col-sm-6 col-xs-12">\n    <form method="post" action="/system" class="form-create-system" role="form">\n      <div class="form-group">\n\t<label>Company\n\t  ' +
+__p += '\n<h3>New System</h3>\n\n<form method="post" action="/system" class="form-create-system" role="form">\n    <div class="form-group">\n        <label>Company\n            ' +
 ((__t = ( companyDropdown() )) == null ? '' : __t) +
-'\n\t</label>\n\t<br>\n\t<label>Or, new company:\n\t  <input type="text" name="new_company" class="form-control">\n\t</label>\n      </div>\n      <div class="form-group">\n\t<label>System Name\n\t  <input type="text" name="name" class="form-control">\n\t</label>\n      </div>\n      <div class="form-group">\n\t<label>Release\n\t  <input type="text" name="release" class="form-control">\n\t</label>\n      </div>\n      <div class="form-group">\n\t<label for="comments">Comments</label>\n\t<textarea name="comments" class="form-control"></textarea>\n      </div>\n      <div class="form-group">\n\t<button type="submit" value="Edit System" class="btn btn-default">\n\t  <i class="glyphicon glyphicon-floppy-disk"></i> Save Changes\n\t</button>\n      </div>\n    </form>\n  </div>\n</div>';
+'\n        </label>\n        <br>\n        <label>Or, new company:\n            <input type="text" name="new_company" class="form-control">\n        </label>\n    </div>\n    <div class="form-group">\n        <label>System Name\n            <input type="text" name="name" class="form-control">\n        </label>\n    </div>\n    <div class="form-group">\n        <label>Release\n            <input type="text" name="release" class="form-control">\n        </label>\n    </div>\n    <div class="form-group">\n        <label for="comments">Comments</label>\n        <textarea name="comments" class="form-control"></textarea>\n    </div>\n    <div class="form-group">\n        <button type="submit" class="btn-default btn">\n            <i class="glyphicon glyphicon-floppy-disk"></i>\n            Save Changes\n        </button>\n        <button type="button" class="btn-reset btn-default btn">\n            <i class="glyphicon glyphicon-remove"></i>\n            Cancel\n        </button>\n    </div>\n</form>';
 
 }
 return __p

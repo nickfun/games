@@ -1,48 +1,48 @@
 <%
-    function systemDropdown() {
-	var out = "<select name='sysid' class='form-control'>";
-	app.data.systems.sort();
-	app.data.systems.each(function(system) {
-            var name = system.get('company') + ' ' + system.get('name');
-	    out += "<option value='" + system.get('id') + "'>" + name + "</option>";
-	});
-	out += "</select>";
-	return out;
-    }
+function systemDropdown() {
+var out = "<select name='sysid' class='form-control'>";
+    app.data.systems.sort();
+    app.data.systems.each(function(system) {
+    var name = system.get('company') + ' ' + system.get('name');
+    out += "<option value='" + system.get('id') + "'>" + name + "</option>";
+    });
+    out += "</select>";
+return out;
+}
 
 %>
 <h3>New Game</h3>
 <form method="post" action="/games" class="form-create-game">
-  <div class="form-group">
-    <label>Name <input type="text" name="name" class="form-control"></label>
-  </div>
-  <div class="form-group">
-    <label>System <%= systemDropdown() %></label>
-  </div>
-  <div class="form-group">
-    <label for="comments-game-create">Comments</label>
-    <textarea name="comment" class="form-control" id="comments-game-create"></textarea>
-  </div>
-  <div class="form-group">
-    <label>
-      Release Date
-      <input type="text" name="release" class="form-control">
-    </label>
-  </div>
-  <div class="form-group"><label> <input type="checkbox" name="is_complete"> Is Complete</label></div>
-  <div class="form-group"><label> <input type="checkbox" name="has_case"> Has Case  </label></div>
-  <div class="form-group"><label> <input type="checkbox" name="has_docs"> Has Documents/Manual</label></div>
-  <div class="form-group"><label> <input type="checkbox" name="is_ghit"> Is Greatest Hits</label></div>
-  <div class="form-group"><label> <input type="checkbox" name="is_limited"> Is Limited Edtion  </label></div>
-  <div class="form-group"><label> <input type="checkbox" name="is_broken"> Is Broken  </label></div>
-  <div class="form-group">
-    <button type="submit" class="btn-default btn">
-      <i class="glyphicon glyphicon-floppy-disk"></i>
-      Save Changes
-    </button>
-    <button type="button" class="btn-cancel btn-default btn">
-      <i class="glyphicon glyphicon-remove"></i>
-      Cancel
-    </button>
-  </div>
+    <div class="form-group">
+        <label>Name <input type="text" name="name" class="form-control"></label>
+    </div>
+    <div class="form-group">
+        <label>System <%= systemDropdown() %></label>
+    </div>
+    <div class="form-group">
+        <label for="comments-game-create">Comments</label>
+        <textarea name="comment" class="form-control" id="comments-game-create"></textarea>
+    </div>
+    <div class="form-group">
+        <label>
+            Release Date
+            <input type="text" name="release" class="form-control">
+        </label>
+    </div>
+    <div class="form-group"><label> <input type="checkbox" name="is_complete"> Is Complete</label></div>
+    <div class="form-group"><label> <input type="checkbox" name="has_case"> Has Case  </label></div>
+    <div class="form-group"><label> <input type="checkbox" name="has_docs"> Has Documents/Manual</label></div>
+    <div class="form-group"><label> <input type="checkbox" name="is_ghit"> Is Greatest Hits</label></div>
+    <div class="form-group"><label> <input type="checkbox" name="is_limited"> Is Limited Edition  </label></div>
+    <div class="form-group"><label> <input type="checkbox" name="is_broken"> Is Broken  </label></div>
+    <div class="form-group">
+        <button type="submit" class="btn-default btn">
+            <i class="glyphicon glyphicon-floppy-disk"></i>
+            Save Changes
+        </button>
+        <button type="button" class="btn-reset btn-default btn">
+            <i class="glyphicon glyphicon-remove"></i>
+            Cancel
+        </button>
+    </div>
 </form>

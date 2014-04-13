@@ -12,11 +12,12 @@ module.exports = function(grunt) {
 		    'js/vendor/lodash.min.js',
 		    'js/vendor/backbone.js',
 		    'js/vendor/backbone.marionette.min.js',
-                    'js/vendor/backbone.siphon.js',
+                    'js/vendor/backbone.syphon.js',
 		    'js/vendor/bootstrap.min.js',
 		    'js/vendor/moment.min.js'
 		],
-		dest: 'out/vendor.js'
+		dest: 'out/vendor.js',
+                nonull: true
 	    },
 	    app: {
 		src: [
@@ -25,7 +26,8 @@ module.exports = function(grunt) {
 		    'js/config.js',
 		    'js/*.module.js'
 		],
-		dest: 'out/app.js'
+		dest: 'out/app.js',
+                nonull: true
 	    },
 	    final: {
 		src: [
@@ -33,7 +35,8 @@ module.exports = function(grunt) {
 		    'out/tpl.js',
 		    'out/app.js'
 		],
-		dest: 'out/spa.js'
+		dest: 'out/spa.js',
+                nonull: true
 	    }
 	},
 	/**

@@ -45,8 +45,13 @@ app.module('Create', function( module, app ) {
 	className: 'col-sm-6 col-xs-12',
 	template: window.TPL['game-create'],
 	events: {
-	    'submit form': 'formSubmit'
+	    'submit form': 'formSubmit',
+            'click .btn-reset': 'resetForm'
 	},
+        resetForm: function(e) {
+            f = this.$el.find('form')[0];
+            f.reset();
+        },
 	formSubmit: function(e) {
 	    e.preventDefault();
 	    console.log("Create a new game!!!!!!");
@@ -98,7 +103,20 @@ app.module('Create', function( module, app ) {
     oViews.CreateSystem = Marionette.ItemView.extend({
 	tagName: 'div',
 	className: 'col-sm-6 col-xs-12',
-	template: window.TPL['system-create']
+	template: window.TPL['system-create'],
+        events: {
+            'submit form': 'submitForm',
+            'click .btn-reset': 'resetForm'
+        },
+        submitForm: function(e) {
+            e.preventDefault();
+            var data = Backbone.Syphon.serialize(this);
+            console.log('data is', data);
+        },
+        resetForm: function(e) {
+            var form = this.$el.find('form')[0];
+            form.reset();
+        }
     });
 
 });
