@@ -1,23 +1,47 @@
 <%
     function companyDropdown() {
+        var companies = _.unique(app.data.systems.pluck('company')).sort();
 	var out ="<select name='company' class='form-control'>";
-	app.data.systems.each(function(system) {
-	    out += "<option value='" + system.get('company') + "'>" + system.get('company') + "</option>";
+	_.each(companies, function(company) {
+	    out += "<option value='" + company + "'>" + company + "</option>";
 	});
 	out += '</select>';
 	return out;
     }
 %>
 <h3>New System</h3>
-<form id="new-system" role="form">
-  <div class="form-group">
-    <label>
-      Name: <input type="text" name="name" class="form-control">
-    </label>
+
+<div class="row">
+  <div class="col-sm-6 col-xs-12">
+    <form method="post" action="/system" class="form-create-system" role="form">
+      <div class="form-group">
+	<label>Company
+	  <%= companyDropdown() %>
+	</label>
+	<br>
+	<label>Or, new company:
+	  <input type="text" name="new_company" class="form-control">
+	</label>
+      </div>
+      <div class="form-group">
+	<label>System Name
+	  <input type="text" name="name" class="form-control">
+	</label>
+      </div>
+      <div class="form-group">
+	<label>Release
+	  <input type="text" name="release" class="form-control">
+	</label>
+      </div>
+      <div class="form-group">
+	<label for="comments">Comments</label>
+	<textarea name="comments" class="form-control"></textarea>
+      </div>
+      <div class="form-group">
+	<button type="submit" value="Edit System" class="btn btn-default">
+	  <i class="glyphicon glyphicon-floppy-disk"></i> Save Changes
+	</button>
+      </div>
+    </form>
   </div>
-  <div class="form-group">
-    <label>
-      System: <%= companyDropdown() %>
-    </label>
-  </div>
-</form>
+</div>

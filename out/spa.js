@@ -1845,17 +1845,18 @@ with (obj) {
 
 
     function companyDropdown() {
+        var companies = _.unique(app.data.systems.pluck('company')).sort();
 	var out ="<select name='company' class='form-control'>";
-	app.data.systems.each(function(system) {
-	    out += "<option value='" + system.get('company') + "'>" + system.get('company') + "</option>";
+	_.each(companies, function(company) {
+	    out += "<option value='" + company + "'>" + company + "</option>";
 	});
 	out += '</select>';
 	return out;
     }
 ;
-__p += '\n<h3>New System</h3>\n<form id="new-system" role="form">\n  <div class="form-group">\n    <label>\n      Name: <input type="text" name="name" class="form-control">\n    </label>\n  </div>\n  <div class="form-group">\n    <label>\n      System: ' +
+__p += '\n<h3>New System</h3>\n\n<div class="row">\n  <div class="col-sm-6 col-xs-12">\n    <form method="post" action="/system" class="form-create-system" role="form">\n      <div class="form-group">\n\t<label>Company\n\t  ' +
 ((__t = ( companyDropdown() )) == null ? '' : __t) +
-'\n    </label>\n  </div>\n</form>\n';
+'\n\t</label>\n\t<br>\n\t<label>Or, new company:\n\t  <input type="text" name="new_company" class="form-control">\n\t</label>\n      </div>\n      <div class="form-group">\n\t<label>System Name\n\t  <input type="text" name="name" class="form-control">\n\t</label>\n      </div>\n      <div class="form-group">\n\t<label>Release\n\t  <input type="text" name="release" class="form-control">\n\t</label>\n      </div>\n      <div class="form-group">\n\t<label for="comments">Comments</label>\n\t<textarea name="comments" class="form-control"></textarea>\n      </div>\n      <div class="form-group">\n\t<button type="submit" value="Edit System" class="btn btn-default">\n\t  <i class="glyphicon glyphicon-floppy-disk"></i> Save Changes\n\t</button>\n      </div>\n    </form>\n  </div>\n</div>';
 
 }
 return __p
@@ -1886,7 +1887,7 @@ function companyDropdown(selectedCompany) {
 ;
 __p += '\n<div class="row">\n  <div class="col-sm-6 col-xs-12">\n    <form method="post" action="/system" class="form-edit-system" role="form">\n      <div class="form-group">\n\t<label>Company\n\t  ' +
 ((__t = ( companyDropdown(company) )) == null ? '' : __t) +
-'\n\t</label>\n\t<br>\n\t<label>Or, new:\n\t  <input type="text" name="new_company" class="form-control">\n\t</label>\n      </div>\n      <div class="form-group">\n\t<label>System Name\n\t  <input type="text" name="name" class="form-control" value="' +
+'\n\t</label>\n\t<br>\n\t<label>Or, new company:\n\t  <input type="text" name="new_company" class="form-control">\n\t</label>\n      </div>\n      <div class="form-group">\n\t<label>System Name\n\t  <input type="text" name="name" class="form-control" value="' +
 __e( name ) +
 '">\n\t</label>\n      </div>\n      <div class="form-group">\n\t<label>Release\n\t  <input type="text" name="release" class="form-control" value="' +
 __e( release ) +
@@ -2060,17 +2061,18 @@ with (obj) {
 
 
     function companyDropdown() {
+        var companies = _.unique(app.data.systems.pluck('company')).sort();
 	var out ="<select name='company' class='form-control'>";
-	app.data.systems.each(function(system) {
-	    out += "<option value='" + system.get('company') + "'>" + system.get('company') + "</option>";
+	_.each(companies, function(company) {
+	    out += "<option value='" + company + "'>" + company + "</option>";
 	});
 	out += '</select>';
 	return out;
     }
 ;
-__p += '\n<h3>New System</h3>\n<form id="new-system" role="form">\n  <div class="form-group">\n    <label>\n      Name: <input type="text" name="name" class="form-control">\n    </label>\n  </div>\n  <div class="form-group">\n    <label>\n      System: ' +
+__p += '\n<h3>New System</h3>\n\n<div class="row">\n  <div class="col-sm-6 col-xs-12">\n    <form method="post" action="/system" class="form-create-system" role="form">\n      <div class="form-group">\n\t<label>Company\n\t  ' +
 ((__t = ( companyDropdown() )) == null ? '' : __t) +
-'\n    </label>\n  </div>\n</form>\n';
+'\n\t</label>\n\t<br>\n\t<label>Or, new company:\n\t  <input type="text" name="new_company" class="form-control">\n\t</label>\n      </div>\n      <div class="form-group">\n\t<label>System Name\n\t  <input type="text" name="name" class="form-control">\n\t</label>\n      </div>\n      <div class="form-group">\n\t<label>Release\n\t  <input type="text" name="release" class="form-control">\n\t</label>\n      </div>\n      <div class="form-group">\n\t<label for="comments">Comments</label>\n\t<textarea name="comments" class="form-control"></textarea>\n      </div>\n      <div class="form-group">\n\t<button type="submit" value="Edit System" class="btn btn-default">\n\t  <i class="glyphicon glyphicon-floppy-disk"></i> Save Changes\n\t</button>\n      </div>\n    </form>\n  </div>\n</div>';
 
 }
 return __p
@@ -2101,7 +2103,7 @@ function companyDropdown(selectedCompany) {
 ;
 __p += '\n<div class="row">\n  <div class="col-sm-6 col-xs-12">\n    <form method="post" action="/system" class="form-edit-system" role="form">\n      <div class="form-group">\n\t<label>Company\n\t  ' +
 ((__t = ( companyDropdown(company) )) == null ? '' : __t) +
-'\n\t</label>\n\t<br>\n\t<label>Or, new:\n\t  <input type="text" name="new_company" class="form-control">\n\t</label>\n      </div>\n      <div class="form-group">\n\t<label>System Name\n\t  <input type="text" name="name" class="form-control" value="' +
+'\n\t</label>\n\t<br>\n\t<label>Or, new company:\n\t  <input type="text" name="new_company" class="form-control">\n\t</label>\n      </div>\n      <div class="form-group">\n\t<label>System Name\n\t  <input type="text" name="name" class="form-control" value="' +
 __e( name ) +
 '">\n\t</label>\n      </div>\n      <div class="form-group">\n\t<label>Release\n\t  <input type="text" name="release" class="form-control" value="' +
 __e( release ) +
