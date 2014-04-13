@@ -8,12 +8,13 @@ module.exports = function(grunt) {
 	concat: {
 	    vendor: {
 		src: [
-		    'js/jquery-1.10.2.min.js',
-		    'js/lodash.min.js',
-		    'js/backbone.js',
-		    'js/backbone.marionette.min.js',
-		    'js/bootstrap.min.js',
-		    'js/moment.min.js'
+		    'js/vendor/jquery-1.10.2.min.js',
+		    'js/vendor/lodash.min.js',
+		    'js/vendor/backbone.js',
+		    'js/vendor/backbone.marionette.min.js',
+                    'js/vendor/backbone.siphon.js',
+		    'js/vendor/bootstrap.min.js',
+		    'js/vendor/moment.min.js'
 		],
 		dest: 'out/vendor.js'
 	    },
