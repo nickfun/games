@@ -4,15 +4,15 @@ require_once 'vendor/autoload.php';
 require_once 'model.php';
 
 /*
-// Auth! lol
-$user = $_SERVER['PHP_AUTH_USER'];
-$pass = $_SERVER['PHP_AUTH_PW'];
-if (!($user == "admin" && $pass == "password1")) {
-    header('WWW-Authenticate: Basic realm="My Realm"');
-    header('HTTP/1.0 401 Unauthorized');
-    die("You are not allowed to access this web resource");
-}
-  */
+  // Auth! lol
+  $user = $_SERVER['PHP_AUTH_USER'];
+  $pass = $_SERVER['PHP_AUTH_PW'];
+  if (!($user == "admin" && $pass == "password1")) {
+  header('WWW-Authenticate: Basic realm="My Realm"');
+  header('HTTP/1.0 401 Unauthorized');
+  die("You are not allowed to access this web resource");
+  }
+ */
 
 // Config
 // ======
@@ -171,7 +171,7 @@ id = :id";
     echo json_encode($res);
 });
 
-// Save a System
+// Save a System that exists
 $app->put('/systems/:id', function($id) use ($pdo, $app) {
     $id = (int) $id;
     $body = $app->request()->getBody();
@@ -207,6 +207,30 @@ id=:id";
         // success
         echo json_encode(['status' => 'ok']);
     }
+});
+
+// Save a brand new game
+$app->post('/systems', function() use ($model, $app) {
+    $body = $app->request()->getBody();
+    $data = json_decode($body, true);
+    $id = $model->saveSystem($data);
+    if (!$id) {
+        $app->response()->setStatus(500);
+        $res = array(
+            'status' => 'bad',
+            'error' => $id,
+            'msg' => 'Could not save system to DB'
+        );
+    } else {
+        $data['id'] = $id;
+        $res = array(
+            'status'=>'ok',
+            'error' => false,
+            'msg'=> 'System saved success',
+            'data'=> $data
+        );
+    }
+    echo json_encode($res);
 });
 
 // Done defining routes

@@ -42,21 +42,31 @@ class Model {
     // --------
     
     public function saveGame($game) {
-        return true;
+        return false;
     }
     
     public function saveSystem($system) {
-        return true;
+        $sql = "INSERT INTO systems SET ( id, name, company, comments, release ) ";
+        $sql .= "VALUES ( '', :name, :company, :comments, :release );";
+        $stm = $this->pdo->prepare($sql);
+        $stm->execute(array(
+            'name' => $system['name'],
+            'company' => $system['company'],
+            'comments' => $system['comments'],
+            'release' => $system['release'],
+        ));
+        return $this->pdo->lastInsertId();
+        //return false;
     }
     
     // Update existing
     // ---------------
     
     public function updateGame($game) {
-        return true;
+        return false;
     }
 
     public function updateSystem($system) {
-        return true;
+        return false;
     }
 }

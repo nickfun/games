@@ -380,7 +380,20 @@ app.module('Create', function( module, app ) {
         submitForm: function(e) {
             e.preventDefault();
             var data = Backbone.Syphon.serialize(this);
+            if( data.new_company.length > 1 ) {
+                data.company = data.new_company;
+                data.new_company = undefined;
+            }
+            var model = new app.Models.System(data);
             console.log('data is', data);
+            var thisView = this;
+            model.save({
+                success: function(model, response, options) {
+                    app.data.systems.add(model);
+                    thisView.render();
+                    console.log("The system was saved to the server");
+                }
+            });
         },
         resetForm: function(e) {
             var form = this.$el.find('form')[0];
