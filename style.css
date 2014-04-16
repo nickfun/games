@@ -20,6 +20,7 @@
 
 .game-name {
     background-color: #eee;
+    font-weight: bold;
 }
 
 /* The view for a Game */

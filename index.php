@@ -3,6 +3,7 @@
 require_once 'vendor/autoload.php';
 require_once 'model.php';
 
+/*
 // Auth! lol
 $user = $_SERVER['PHP_AUTH_USER'];
 $pass = $_SERVER['PHP_AUTH_PW'];
@@ -11,6 +12,7 @@ if (!($user == "admin" && $pass == "password1")) {
     header('HTTP/1.0 401 Unauthorized');
     die("You are not allowed to access this web resource");
 }
+  */
 
 // Config
 // ======
