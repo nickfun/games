@@ -37,31 +37,34 @@ class Model {
         $stm->execute(['id' => $id]);
         return $stm->fetchAll();
     }
-    
+
     // Save New
     // --------
-    
+
     public function saveGame($game) {
         return false;
     }
-    
+
     public function saveSystem($system) {
-        $sql = "INSERT INTO systems SET ( id, name, company, comments, release ) ";
+        $sql = "INSERT INTO systems ( id, name, company, comments, `release` ) ";
         $sql .= "VALUES ( '', :name, :company, :comments, :release );";
         $stm = $this->pdo->prepare($sql);
-        $stm->execute(array(
+        $success = $stm->execute(array(
             'name' => $system['name'],
             'company' => $system['company'],
             'comments' => $system['comments'],
             'release' => $system['release'],
         ));
+        if( !$success ) {
+            return false;
+        }
         return $this->pdo->lastInsertId();
         //return false;
     }
-    
+
     // Update existing
     // ---------------
-    
+
     public function updateGame($game) {
         return false;
     }
@@ -69,4 +72,5 @@ class Model {
     public function updateSystem($system) {
         return false;
     }
+
 }

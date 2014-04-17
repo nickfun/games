@@ -2776,13 +2776,17 @@ app.module('Create', function( module, app ) {
                 data.new_company = undefined;
             }
             var model = new app.Models.System(data);
-            console.log('data is', data);
+            console.log('System to be saved is', data);
             var thisView = this;
             model.save({
                 success: function(model, response, options) {
+                    model.set(id, response.data.id);
                     app.data.systems.add(model);
                     thisView.render();
                     console.log("The system was saved to the server");
+                },
+                error: function() {
+                    console.error("The system could not be saved!");
                 }
             });
         },

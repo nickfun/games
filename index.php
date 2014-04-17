@@ -25,6 +25,7 @@ $db_pass = getenv('GAME_DB_PASS');
 $dsn = "mysql:dbname=$db_name;host=$db_host";
 $pdo = new PDO($dsn, $db_user, $db_pass);
 $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
+$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 $app = new \Slim\Slim();
 
@@ -236,4 +237,14 @@ $app->post('/systems', function() use ($model, $app) {
 // Done defining routes
 // --------------------
 
-$app->run();
+try {
+    $app->run();
+} catch (Exception $ex) {
+    $resp = array(
+        "status" => "bad",
+        "error" => $ex->getCode(),
+        "msg" => $ex->getMessage(),
+    );
+    echo json_encode($resp);
+}
+
