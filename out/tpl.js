@@ -132,6 +132,22 @@ __p += '\n<div class="col-sm-3 game-name">' +
 return __p
 };
 
+this["TPL"]["system-button-view"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<button class="btn btn-lg btn-default" type="button" data-sysid="' +
+__e( id ) +
+'"> ' +
+__e( company ) +
+' ' +
+__e( name ) +
+' </button>';
+
+}
+return __p
+};
+
 this["TPL"]["system-create"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;

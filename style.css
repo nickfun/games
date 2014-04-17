@@ -11,6 +11,15 @@
 }
 
 /* the view for a System */
+.button-system-view {
+    display: inline;
+}
+
+.button-system-view button {
+    margin: 20px;
+    padding: 10px;
+}
+
 .system-row {
     padding-top: 4px;
 }

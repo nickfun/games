@@ -7,7 +7,7 @@ app.module('Systems', function( module, app ) {
     module.addInitializer( function() {
 	console.log("INIT: Systems module");
 	_sortSystems();
-	systemListView = new Views.SystemList({
+	systemListView = new Views.SystemButtonList({
 	    collection: app.data.systems
 	});
 	systemListView.render();
@@ -29,6 +29,26 @@ app.module('Systems', function( module, app ) {
     // -------
 
     var Views = {};
+    
+    Views.SystemButtonRow = Marionette.ItemView.extend({
+        template: window.TPL['system-button-view'],
+        tagName: 'div',
+        className: 'button-system-view'
+    });
+    
+    Views.SystemButtonList = Marionette.CollectionView.extend({
+        tagName: 'div',
+        className: 'button-system-view-container',
+        itemView: Views.SystemButtonRow,
+        events: {
+            'click button': 'buttonClick'
+        },
+        buttonClick: function(e) {
+            e.preventDefault();
+            var sysid = $(e.target).attr("data-sysid");
+            app.vent.trigger("select:system", sysid);
+        }
+    });
 
     Views.SystemRow = Marionette.ItemView.extend({
 	template: window.TPL['system-row'],
