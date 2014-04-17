@@ -19,7 +19,8 @@ app.module('Games', function(module, app) {
             // hide the view
             gameListView.close();
             $('#game-list').empty();
-            return;
+            // forget we showed this system
+            currentSystemShown = -1;
         } else {
             var systemGames = new app.Collections.Systems(app.data.games.where({sysid: sysid}));
             gameListView = new Views.GameList({
@@ -27,14 +28,15 @@ app.module('Games', function(module, app) {
             });
             gameListView.render();
             $('#game-list').empty().append(gameListView.el);
+            gameListView.el.scrollIntoView();
+            currentSystemShown = sysid;
         }
-        currentSystemShown = sysid;
     })
 
     // Private vars
 
     var gameListView;
-    var currentSystemShown = 0;
+    var currentSystemShown = -1;
 
     // Views
     // =====
