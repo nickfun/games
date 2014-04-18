@@ -23,8 +23,10 @@
             </div>
         </div>
 
-        <h2>Systems</h2>
+        <h2>System List</h2>
         <div id="system-list"></div>
+        
+        <div id="system-info"></div>
 
         <h2>Games</h2>
         <div id="game-list"></div>

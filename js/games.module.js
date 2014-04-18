@@ -6,37 +6,31 @@ app.module('Games', function(module, app) {
 
     module.addInitializer(function() {
         console.log("INIT: games module");
-//	var dreamcastGames = new app.Collections.Systems( app.data.games.where({sysid: "10"}) );
-//	gameListView = new Views.GameList({
-//	    collection: app.data.games
-//	});
-//	gameListView.render();
-//	$('#game-list').empty().append(gameListView.el);
+
+        gameListRegion = new Backbone.Marionette.Region({
+            el: '#game-list'
+        });
     });
 
     app.vent.on('select:system', function(sysid) {
-        if (sysid == currentSystemShown) {
-            // hide the view
-            gameListView.close();
-            $('#game-list').empty();
-            // forget we showed this system
-            currentSystemShown = -1;
-        } else {
-            var systemGames = new app.Collections.Systems(app.data.games.where({sysid: sysid}));
-            gameListView = new Views.GameList({
-                collection: systemGames
-            });
-            gameListView.render();
-            $('#game-list').empty().append(gameListView.el);
-            gameListView.el.scrollIntoView();
-            currentSystemShown = sysid;
-        }
-    })
+        // build the new view
+        var systemGames = new app.Collections.Systems(app.data.games.where({sysid: sysid}));
+        gameListView = new Views.GameList({
+            collection: systemGames
+        });
+        gameListView.render();
+        gameListRegion.show(gameListView);
+    });
+
+    app.vent.on('unselect:system', function() {
+        gameListRegion.close();
+    });
 
     // Private vars
 
     var gameListView;
     var currentSystemShown = -1;
+    var gameListRegion;
 
     // Views
     // =====
