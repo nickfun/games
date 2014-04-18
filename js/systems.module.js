@@ -13,7 +13,13 @@ app.module('Systems', function(module, app) {
             collection: app.data.systems
         });
         systemListView.render();
-        $('#system-list').empty().append(systemListView.el);
+        regions = new Marionette.RegionManager();
+        regions.addRegions({
+            'system-info': '#system-info',
+            'system-list': '#system-list'
+        });
+        regions.get('system-list').show(systemListView);
+        //$('#system-list').empty().append(systemListView.el);
     });
 
     function _sortSystems() {
@@ -26,7 +32,23 @@ app.module('Systems', function(module, app) {
     }
 
     var systemListView;
+    var regions;
     var selectedSystem = 0;
+    
+    // Listen for events
+    // -----------------
+    
+    app.vent.on('select:system', function(sysid) {
+        var system = app.data.systems.get(sysid);
+        var systemView = new Views.SystemRow({
+            model: system
+        });
+        regions.get('system-info').show(systemView);
+    });
+    
+    app.vent.on('unselect:system', function() {
+        regions.get('system-info').close();
+    });
 
     // Views
     // -------
