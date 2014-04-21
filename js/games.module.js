@@ -36,6 +36,13 @@ app.module('Games', function(module, app) {
     // =====
 
     var Views = {};
+    
+    // When there are no games
+    Views.GameRowEmpty = Marionette.ItemView.extend({
+        template: window.TPL['game-empty'],
+        tagName: 'div',
+        className: 'row game-row'
+    });
 
     // A single game row
     // -----------------
@@ -153,7 +160,8 @@ app.module('Games', function(module, app) {
     Views.GameList = Marionette.CollectionView.extend({
         tagName: 'div',
         className: 'container-fluid',
-        itemView: Views.GameRow
+        itemView: Views.GameRow,
+        emptyView: Views.GameRowEmpty
     });
 
 });

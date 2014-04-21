@@ -2260,6 +2260,16 @@ __e( release ) +
 return __p
 };
 
+this["TPL"]["game-empty"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="col-sm-3 game-name">No Games</div>\n<div class="col-sm-9">\n\tThis system has zero games.\n</div>\n';
+
+}
+return __p
+};
+
 this["TPL"]["game-row"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
@@ -2487,6 +2497,16 @@ __e( release ) +
 '> Is Limited Edtion  </label></div>\n      <div class="form-group"><label> <input type="checkbox" name="is_broken" ' +
 ((__t = ( checked(is_broken) )) == null ? '' : __t) +
 '> Is Broken  </label></div>\n      <div class="form-group">\n\t<button type="submit" class="btn-default btn">\n\t  <i class="glyphicon glyphicon-floppy-disk"></i>\n\t  Save Changes\n\t</button>\n\t<button type="button" class="btn-cancel btn-default btn">\n\t  <i class="glyphicon glyphicon-remove"></i>\n\t  Cancel\n\t</button>\n      </div>\n    </form>\n  </div>\n</div>\n';
+
+}
+return __p
+};
+
+this["TPL"]["game-empty"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="col-sm-3 game-name">No Games</div>\n<div class="col-sm-9">\n\tThis system has zero games.\n</div>\n';
 
 }
 return __p
@@ -2868,6 +2888,13 @@ app.module('Games', function(module, app) {
     // =====
 
     var Views = {};
+    
+    // When there are no games
+    Views.GameRowEmpty = Marionette.ItemView.extend({
+        template: window.TPL['game-empty'],
+        tagName: 'div',
+        className: 'row game-row'
+    });
 
     // A single game row
     // -----------------
@@ -2985,7 +3012,8 @@ app.module('Games', function(module, app) {
     Views.GameList = Marionette.CollectionView.extend({
         tagName: 'div',
         className: 'container-fluid',
-        itemView: Views.GameRow
+        itemView: Views.GameRow,
+        emptyView: Views.GameRowEmpty
     });
 
 });

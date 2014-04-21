@@ -85,6 +85,16 @@ __e( release ) +
 return __p
 };
 
+this["TPL"]["game-empty"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="col-sm-3 game-name">No Games</div>\n<div class="col-sm-9">\n\tThis system has zero games.\n</div>\n';
+
+}
+return __p
+};
+
 this["TPL"]["game-row"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape, __j = Array.prototype.join;
