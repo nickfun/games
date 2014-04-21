@@ -3050,7 +3050,15 @@ app.module('Systems', function(module, app) {
     Views.SystemButtonRow = Marionette.ItemView.extend({
         template: window.TPL['system-button-view'],
         tagName: 'div',
-        className: 'button-system-view'
+        className: 'button-system-view',
+        hilight: function(toggle) {
+            if (toggle) {
+                this.$el.addClass("hilight");
+            } else {
+                this.$el.removeClass("hilight");
+            }
+            
+        }
     });
 
     Views.SystemButtonList = Marionette.CollectionView.extend({

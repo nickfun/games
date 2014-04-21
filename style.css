@@ -15,6 +15,10 @@
     display: inline;
 }
 
+.button-system-view.hilight button {
+    border: 4px solid green;
+}
+
 .button-system-view button {
     margin: 20px;
     padding: 10px;
