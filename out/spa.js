@@ -3065,20 +3065,34 @@ app.module('Systems', function(module, app) {
         tagName: 'div',
         className: 'button-system-view-container',
         itemView: Views.SystemButtonRow,
+        selectedView: false,
         events: {
             'click button': 'buttonClick'
         },
         buttonClick: function(e) {
             e.preventDefault();
+            // find the system ID
             var sysid = $(e.target).attr("data-sysid");
+            // find the model
+            var model = app.data.systems.get(sysid);
+            // find its view
+            var view = this.children.findByModel(model);
+            // deal with sending the event & hilight the view
+            if (this.selectedView) {
+                this.selectedView.hilight(false);
+            }
             if (sysid == selectedSystem) {
                 // we should unselected
                 app.vent.trigger('unselect:system');
                 selectedSystem = 0;
+                view.hilight(false);
+                this.selectedView = false;
             } else {
                 // we are selecting a new system
                 selectedSystem = sysid;
                 app.vent.trigger("select:system", sysid);
+                view.hilight(true);
+                this.selectedView = view;
             }
         }
     });
