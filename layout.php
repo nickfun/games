@@ -17,7 +17,15 @@
         <h1>My Game Collection!</h1>
 
         <h2>Creation Station</h2>
-        <button type="button" class="btn btn-default btn-toggle-creation-view">Create Something!</button>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <button type="button" class="btn btn-default btn-toggle-creation-view">Create Something!</button>
+                </div>
+            </div>
+        </div>
+
         <div class="container-fluid creation-container hidden well">
             <div id="create-forms-container" class="row">
             </div>
@@ -25,7 +33,7 @@
 
         <h2>System List</h2>
         <div id="system-list"></div>
-        
+
         <div id="system-info"></div>
 
         <h2>Games</h2>
