@@ -455,6 +455,7 @@ app.module('Games', function(module, app) {
         });
         gameListView.render();
         gameListRegion.show(gameListView);
+        gameListView.scroll();
     });
 
     app.vent.on('unselect:system', function() {
@@ -596,7 +597,10 @@ app.module('Games', function(module, app) {
         tagName: 'div',
         className: 'container-fluid',
         itemView: Views.GameRow,
-        emptyView: Views.GameRowEmpty
+        emptyView: Views.GameRowEmpty,
+        scroll: function() {
+            this.el.scrollIntoView();
+        }
     });
 
 });
