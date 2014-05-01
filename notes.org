@@ -15,15 +15,15 @@ Also a testing ground to learn about Single Page Applications in Backbone/Marion
 ** DONE Edit a Game
 ** TODO add validation to backbone models
 ** TODO Sortable lists of systems/games
-** TODO Add a new System
-** TODO Add a new Game
-** TODO Better flow
+** DONE Add a new System
+** DONE Add a new Game
+** DONE Better flow
 1. page loads: see list of systems
 2. click on system to see list of games
 3. have back/home button to return to list of games
 4. flows do not load new pages, it is all done in-app
-
 ** TODO delete a game
+** TODO Search for a game
 * Misc
 ** TODO System to share template functions
 - Dropdown list of companies
