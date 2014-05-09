@@ -15,6 +15,7 @@ Also a testing ground to learn about Single Page Applications in Backbone/Marion
 ** DONE Edit a Game
 ** TODO add validation to backbone models
 ** TODO Sortable lists of systems/games
+** TODO When opening a games list, the "Games" heading should display the name of the system
 ** DONE Add a new System
 ** DONE Add a new Game
 ** DONE Better flow
