@@ -104,12 +104,12 @@ with (obj) {
 
 function extras( options ) {
 	var statusmap = {
-		'has_case': '<span title="Has Case" class="glyphicon glyphicon-ok"></span>',
-		'has_docs': '<span title="Has Docs" class="glyphicon glyphicon-book"></span>',
-		'is_ghit': '<span title="Greatest hits edition" class="glyphicon glyphicon-star-empty"></span>',
-		'is_limited': '<span title="Limited Edition!" class="glyphicon glyphicon-fire"></span>',
-		'is_complete': '<span title="Is Compelte" class="glyphicon glyphicon-heart"></span>',
-		'is_broken': '<span title="Is Broken" class="glyphicon glyphicon-remove"></span>'
+		'has_case': '<span title="Has Case" class="glyphicon glyphicon-ok"></span> Case',
+		'has_docs': '<span title="Has Docs" class="glyphicon glyphicon-book"></span> Docs',
+		'is_ghit': '<span title="Greatest hits edition" class="glyphicon glyphicon-star-empty"></span> GHits',
+		'is_limited': '<span title="Limited Edition!" class="glyphicon glyphicon-fire"></span> Limited',
+		'is_complete': '<span title="Is Compelte" class="glyphicon glyphicon-heart"></span> Complete',
+		'is_broken': '<span title="Is Broken" class="glyphicon glyphicon-remove"></span> Broken'
 	};
 	var output = "";
 	_.each( statusmap, function(value,key) {
