@@ -39,6 +39,8 @@
         <h2>Games</h2>
         <div id="game-list"></div>
 
+	 	<p>&nbsp;</p>
+
         <script>
             var __bootstrap = {};
             __bootstrap.systems = <?= $bootstrap_systems ?>;
