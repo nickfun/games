@@ -16,15 +16,18 @@
 
         <h1>My Game Collection!</h1>
 
-        <h2>Creation Station</h2>
+        <h2>Creation or Search!</h2>
 
         <div class="container-fluid">
             <div class="row">
                 <div class="col-sm-12">
                     <button type="button" class="btn btn-default btn-toggle-creation-view">Create Something!</button>
+                    <button type="button" class="btn btn-default btn-toggle-search-view">Search!</button>
                 </div>
             </div>
         </div>
+
+        <div class="container-fluid hidden well search-container"></div>
 
         <div class="container-fluid creation-container hidden well">
             <div id="create-forms-container" class="row">
